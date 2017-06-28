@@ -1,0 +1,12 @@
+.main-form button {
+    margin-top: 20px;
+}
+
+.main-form .days-label {
+    margin-top: 5px;
+    padding: 0;
+}
+
+.main-form {
+    position: relative;
+}
