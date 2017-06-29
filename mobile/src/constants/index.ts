@@ -1,3 +1,7 @@
 /**
  * Created by shine on 29/6/2017.
  */
+export const SELECT_WORK_ADDRESS = 'SELECT_WORK_ADDRESS';
+export const REMOVE_WORK_ADDRESS = 'REMOVE_WORK_ADDRESS';
+export const SELECT_HOME_ADDRESS = 'SELECT_HOME_ADDRESS';
+export const REMOVE_HOME_ADDRESS = 'REMOVE_HOME_ADDRESS';

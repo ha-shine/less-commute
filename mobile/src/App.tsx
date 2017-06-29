@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import MainForm from './components/MainForm';
+import MainForm from './containers/MainForm';
 import TopBar from './components/TopBar';
 
 class App extends React.Component<{}, {}> {

@@ -15,6 +15,8 @@ export interface State {
 
 export interface Props {
     disabled: boolean;
+    onSelectAddress: (address: AutocompletePrediction) => void;
+    onRemoveAddress: () => void;
 }
 
 class GooglePlaceAutocomplete extends React.Component<Props, State> {
@@ -32,6 +34,7 @@ class GooglePlaceAutocomplete extends React.Component<Props, State> {
         this.setState({
             selectedPrediction: null
         });
+        this.props.onRemoveAddress();
     }
 
     removePredictions() {
@@ -54,6 +57,7 @@ class GooglePlaceAutocomplete extends React.Component<Props, State> {
             textboxValue: prediction.description,
             predictions: []
         });
+        this.props.onSelectAddress(prediction);
     }
 
     onTextInputChange = (event: SyntheticEvent<HTMLInputElement>) => {
