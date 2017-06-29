@@ -43,7 +43,10 @@ export default function MainForm(props: Props) {
                     </div>
                 </div>
             </div>
-            <button className="btn btn-default btn-block" disabled={shouldDisableCalculateButton}>
+            <button
+                className="btn btn-default btn-block"
+                disabled={shouldDisableCalculateButton}
+            >
                 Calculate <span className="ion-navigate"/>
             </button>
         </div>
