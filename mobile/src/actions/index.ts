@@ -50,3 +50,8 @@ export function removeHomeAddress(): RemoveHomeAddressAction {
 
 export type SelectedAddressAction = SelectHomeAddressAction | SelectWorkAddressAction |
                                     RemoveHomeAddressAction | RemoveWorkAddressAction;
+
+export interface GetDirectionRoute {
+    type: string;
+    
+}
