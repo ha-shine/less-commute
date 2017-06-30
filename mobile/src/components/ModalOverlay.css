@@ -1,18 +1,40 @@
-.modal-overlay {
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.3);
+/* loading div animation */
+.modal-dialog .loading-div {
+    padding: 100px 0;
 }
 
-.modal-overlay-content {
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
+.modal-dialog .loading-div span:nth-of-type(1):after {
+    content: '.';
+    animation: dots 1s linear both infinite;
+}
+
+.modal-dialog .loading-div span:nth-of-type(2):after {
+    content: '.';
+    animation: dots2 1s linear both infinite;
+}
+
+.modal-dialog .loading-div span:nth-of-type(3):after {
+    content: '.';
+    animation: dots3 1s linear both infinite;
+}
+
+@keyframes dots {
+    0%, 39% {
+        color: white;}
+    40%, 100% {
+        color: black;}
+}
+
+@keyframes dots2 {
+    0%, 69% {
+        color: white;}
+    70%, 100% {
+        color: black;}
+}
+
+@keyframes dots3 {
+    0%, 89% {
+        color: white;}
+    90%, 100% {
+        color: black;}
 }

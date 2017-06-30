@@ -13,6 +13,7 @@ export interface Props {
     onSelectWorkAddress: (address: AutocompletePrediction) => void;
     onRemoveHomeAddress: () => void;
     onRemoveWorkAddress: () => void;
+    onClickCalculateBtn: () => void;
 }
 export default function MainForm(props: Props) {
     const shouldDisableCalculateButton = props.selectedHomeAddress == null || props.selectedWorkAddress == null;
@@ -46,6 +47,7 @@ export default function MainForm(props: Props) {
             <button
                 className="btn btn-default btn-block"
                 disabled={shouldDisableCalculateButton}
+                onClick={props.onClickCalculateBtn}
             >
                 Calculate <span className="ion-navigate"/>
             </button>

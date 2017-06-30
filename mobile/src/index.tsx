@@ -10,7 +10,11 @@ import {rootReducer} from './reducers/index';
 
 const initialStore: StoreState = {
     selectedHomeAddress: null,
-    selectedWorkAddress: null
+    selectedWorkAddress: null,
+    showModal: false,
+    routesFromSource: [],
+    routesFromDestination: [],
+    currentModal: ''
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

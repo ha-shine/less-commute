@@ -1,5 +1,6 @@
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants';
+import DirectionsRoute = google.maps.DirectionsRoute;
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -51,7 +52,39 @@ export function removeHomeAddress(): RemoveHomeAddressAction {
 export type SelectedAddressAction = SelectHomeAddressAction | SelectWorkAddressAction |
                                     RemoveHomeAddressAction | RemoveWorkAddressAction;
 
-export interface GetDirectionRoute {
+export interface ToggleModalAction {
     type: string;
-    
+}
+export function toggleModal(): ToggleModalAction {
+    return {
+        type: constants.TOGGLE_MODAL
+    };
+}
+
+export interface FetchGoogleRouteAction {
+    type: string;
+    result: DirectionsRoute[];
+}
+export function fetchRouteFromSource(result: DirectionsRoute[]): FetchGoogleRouteAction {
+    return {
+        type: constants.FETCH_ROUTE_FROM_SOURCE,
+        result: result
+    };
+}
+export function fetchRouteFromDestination(result: DirectionsRoute[]): FetchGoogleRouteAction {
+    return {
+        type: constants.FETCH_ROUTE_FROM_DESTINATION,
+        result: result
+    };
+}
+
+export interface ShowModalAction {
+    type: string;
+    modal: string;
+}
+export function showModal(modal: string): ShowModalAction {
+    return {
+        type: constants.SHOW_MODAL,
+        modal: constants.MODAL_SELECT_BASE_ROUTE
+    };
 }
