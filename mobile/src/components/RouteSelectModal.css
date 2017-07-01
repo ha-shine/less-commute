@@ -32,6 +32,14 @@
     margin-bottom: 10px;
 }
 
+.route-select-modal-content .modal-body .selectable-row.selected {
+    opacity: 1;
+}
+
+.route-select-modal-content .modal-footer {
+    padding-top: 0;
+}
+
 .route-select-modal-content .modal-footer .ion-ios-checkmark-empty {
     margin-left: 5px;
     font-size: 10px;

@@ -12,6 +12,10 @@ export interface Props {
     destinationName: string;
     routesFromSource: IdentifiableDirectionsRoute[];
     routesFromDestination: IdentifiableDirectionsRoute[];
+    selectedRouteIdFromSource: string;
+    selectedRouteIdFromDestination: string;
+    onSelectRouteFromSource: (s: string) => void;
+    onSelectRouteFromDestination: (s: string) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -33,13 +37,21 @@ export default function RouteSelectModalDialog(p: Props) {
                         <span className="ion-ios-arrow-thin-right"/>
                         {p.destinationName}
                     </div>
-                    <RouteSelectModalBody routes={p.routesFromSource} />
+                    <RouteSelectModalBody
+                        routes={p.routesFromSource}
+                        onSelectRoute={p.onSelectRouteFromSource}
+                        selectedRouteId={p.selectedRouteIdFromSource}
+                    />
                     <div className="modal-header">
                         {p.destinationName}
                         <span className="ion-ios-arrow-thin-right"/>
                         {p.sourceName}
                     </div>
-                    <RouteSelectModalBody routes={p.routesFromDestination} />
+                    <RouteSelectModalBody
+                        routes={p.routesFromDestination}
+                        onSelectRoute={p.onSelectRouteFromDestination}
+                        selectedRouteId={p.selectedRouteIdFromDestination}
+                    />
                     <div className="modal-footer">
                         <button className="btn btn-default pull-right">
                             confirm <span className="ion-ios-checkmark-empty"/>

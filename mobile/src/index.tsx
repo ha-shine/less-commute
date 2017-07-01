@@ -15,6 +15,8 @@ const initialStore: StoreState = {
     showModal: false,
     routesFromSource: [],
     routesFromDestination: [],
+    selectedRouteIdFromSource: '',
+    selectedRouteIdFromDestination: '',
     currentModal: CurrentModal.None
 };
 

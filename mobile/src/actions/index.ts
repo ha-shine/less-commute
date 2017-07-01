@@ -88,3 +88,28 @@ export function showModal(modal: constants.CurrentModal): ShowModalAction {
         modal: modal
     };
 }
+
+export interface SelectRouteAction {
+    type: string;
+    routeId: string;
+}
+export function selectRouteFromSource(routeId: string): SelectRouteAction {
+    console.log(routeId);
+    return {
+        type: constants.SELECT_ROUTE_FROM_SOURCE,
+        routeId
+    };
+}
+export function selectRouteFromDestination(routeId: string): SelectRouteAction {
+    console.log(routeId);
+    return {
+        type: constants.SELECT_ROUTE_FROM_DESTINATION,
+        routeId
+    };
+}
+export function clearSelectedRoutes(routeId: string): SelectRouteAction {
+    return {
+        type: constants.CLEAR_SELECTED_ROUTE_IDS,
+        routeId: ''
+    };
+}

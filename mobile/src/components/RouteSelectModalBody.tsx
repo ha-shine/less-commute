@@ -5,6 +5,8 @@ const uuidv4 = require('uuid/v4');
 
 export interface Props {
     routes: IdentifiableDirectionsRoute[];
+    onSelectRoute: (id: string) => void;
+    selectedRouteId: string;
 }
 export default class RouteSelectModalBody extends React.Component<Props, {}> {
     render() {
@@ -16,9 +18,14 @@ export default class RouteSelectModalBody extends React.Component<Props, {}> {
                     <div className="col-xs-2">Time</div>
                 </div>
                 {this.props.routes.map((route, index) => {
-                    console.log(route);
+                    let className = 'row selectable-row';
+                    className += (this.props.selectedRouteId === route.id) ? ' selected' : '';
                     return (
-                        <div className="row selectable-row" key={uuidv4()}>
+                        <div
+                            className={className}
+                            key={uuidv4()}
+                            onClick={() => this.props.onSelectRoute(route.id)}
+                        >
                             <div className="col-xs-8">
                                 <DirectionsStepsRenderer steps={route.route.legs[0].steps}/>
                             </div>

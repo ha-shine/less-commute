@@ -1,7 +1,7 @@
 import * as constants from '../constants/index';
 import {
     FetchGoogleRouteAction,
-    SelectedAddressAction, ShowModalAction,
+    SelectedAddressAction, SelectRouteAction, ShowModalAction,
     ToggleModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
@@ -66,7 +66,28 @@ export function currentModal(state: constants.CurrentModal = CurrentModal.None,
                              action: ShowModalAction): constants.CurrentModal {
     switch (action.type) {
         case constants.SHOW_MODAL:
+        case constants.CLEAR_SELECTED_ROUTE_IDS:
             return action.modal;
+        default:
+            return state;
+    }
+}
+
+export function selectedRouteIdFromSource(state: string = '', action: SelectRouteAction): string {
+    switch (action.type) {
+        case constants.SELECT_ROUTE_FROM_SOURCE:
+        case constants.CLEAR_SELECTED_ROUTE_IDS:
+            return action.routeId;
+        default:
+            return state;
+    }
+}
+
+export function selectedRouteIdFromDestination(state: string = '', action: SelectRouteAction): string {
+    switch (action.type) {
+        case constants.SELECT_ROUTE_FROM_DESTINATION:
+        case constants.CLEAR_SELECTED_ROUTE_IDS:
+            return action.routeId;
         default:
             return state;
     }
@@ -78,5 +99,7 @@ export const rootReducer = combineReducers<StoreState>({
     showModal,
     routesFromSource,
     routesFromDestination,
-    currentModal
+    currentModal,
+    selectedRouteIdFromSource,
+    selectedRouteIdFromDestination
 });
