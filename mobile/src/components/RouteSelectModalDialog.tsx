@@ -3,11 +3,15 @@ import LargeModalDialog from './LargeModalDialog';
 import LoadingAnimationModalContent from './LoadingAnimationModalContent';
 import './RouteSelectModal.css';
 import ModalOverlayContainer from './ModalOverlayContainer';
+import RouteSelectModalBody from './RouteSelectModalBody';
+import DirectionsRoute = google.maps.DirectionsRoute;
 
 export interface Props {
     isFetching: boolean;
     sourceName: string;
     destinationName: string;
+    routesFromSource: DirectionsRoute[];
+    routesFromDestination: DirectionsRoute[];
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -23,23 +27,23 @@ export default function RouteSelectModalDialog(p: Props) {
         <ModalOverlayContainer>
             <LargeModalDialog>
                 <div className="modal-content route-select-modal-content">
+                    <span className="ion-android-close close-button"/>
                     <div className="modal-header">
                         {p.sourceName}
                         <span className="ion-ios-arrow-thin-right"/>
                         {p.destinationName}
                     </div>
-                    <div className="modal-body">
-                        Testing
-                    </div>
-                </div>
-                <div className="modal-content route-select-modal-content">
+                    <RouteSelectModalBody routes={p.routesFromSource} />
                     <div className="modal-header">
                         {p.destinationName}
                         <span className="ion-ios-arrow-thin-right"/>
                         {p.sourceName}
                     </div>
-                    <div className="modal-body">
-                        Testing
+                    <RouteSelectModalBody routes={p.routesFromDestination} />
+                    <div className="modal-footer">
+                        <button className="btn btn-default pull-right">
+                            confirm <span className="ion-ios-checkmark-empty"/>
+                        </button>
                     </div>
                 </div>
             </LargeModalDialog>

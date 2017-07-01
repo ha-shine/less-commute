@@ -7,8 +7,10 @@ import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 function mapStateToProps(s: StoreState) {
     return {
         isFetching: s.routesFromDestination.length === 0 && s.routesFromSource.length === 0,
-        sourceName: s.selectedHomeAddress !== null ? s.selectedHomeAddress.description : '',
-        destinationName: s.selectedWorkAddress !== null ? s.selectedWorkAddress.description : ''
+        sourceName: 'Home',
+        destinationName: 'Work',
+        routesFromSource: s.routesFromSource,
+        routesFromDestination: s.routesFromDestination
     };
 }
 
