@@ -80,11 +80,11 @@ export function fetchRouteFromDestination(result: DirectionsRoute[]): FetchGoogl
 
 export interface ShowModalAction {
     type: string;
-    modal: string;
+    modal: constants.CurrentModal;
 }
-export function showModal(modal: string): ShowModalAction {
+export function showModal(modal: constants.CurrentModal): ShowModalAction {
     return {
         type: constants.SHOW_MODAL,
-        modal: constants.MODAL_SELECT_BASE_ROUTE
+        modal: modal
     };
 }

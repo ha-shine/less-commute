@@ -10,4 +10,7 @@ export const FETCH_ROUTE_FROM_SOURCE = 'FETCH_ROUTE_FROM_SOURCE';
 export const FETCH_ROUTE_FROM_DESTINATION = 'FETCH_ROUTE_TO_DESTINATION';
 
 export const SHOW_MODAL = 'SHOW_MODAL';
-export const MODAL_SELECT_BASE_ROUTE = 'MODAL_SELECT_BASE_ROUTE';
+export enum CurrentModal {
+    BaseRoute,
+    None
+}

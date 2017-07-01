@@ -3,15 +3,16 @@ import * as constants from '../constants/index';
 import './ModalOverlay.css';
 import RouteSelectModalDialog from '../containers/RouteSelectModalDialog';
 import ModalOverlayContainer from './ModalOverlayContainer';
+import {CurrentModal} from '../constants/index';
 
 export interface Props {
     showModal: boolean;
-    currentModal: string;
+    currentModal: constants.CurrentModal;
 }
 export default function ModalOverlay(props: Props) {
     if (props.showModal) {
         switch (props.currentModal) {
-            case constants.MODAL_SELECT_BASE_ROUTE:
+            case CurrentModal.BaseRoute:
                 return <RouteSelectModalDialog />;
             default:
                 return <ModalOverlayContainer />;

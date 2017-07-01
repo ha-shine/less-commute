@@ -8,6 +8,7 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
 import DirectionsRoute = google.maps.DirectionsRoute;
+import {CurrentModal} from '../constants/index';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -61,7 +62,8 @@ export function routesFromDestination(state: DirectionsRoute[] = [],
     }
 }
 
-export function currentModal(state: string = '', action: ShowModalAction): string {
+export function currentModal(state: constants.CurrentModal = CurrentModal.None,
+                             action: ShowModalAction): constants.CurrentModal {
     switch (action.type) {
         case constants.SHOW_MODAL:
             return action.modal;

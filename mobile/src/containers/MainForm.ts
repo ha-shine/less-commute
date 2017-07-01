@@ -12,6 +12,7 @@ import DirectionsRoute = google.maps.DirectionsRoute;
 import DirectionsResult = google.maps.DirectionsResult;
 import {getGoogleDirection} from '../services/index';
 import * as constants from '../constants/index';
+import {CurrentModal} from '../constants/index';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -34,7 +35,7 @@ interface DispatchProps {
     onReceiveRouteFromSource: (route: DirectionsRoute[]) => void;
     onReceiveRouteFromDestination: (route: DirectionsRoute[]) => void;
     onToggleModal: () => void;
-    onShowModal: (s: string) => void;
+    onShowModal: (s: constants.CurrentModal) => void;
 }
 function mapDispatchToProps(dispatch: Dispatch<object>) {
     return {
@@ -45,13 +46,13 @@ function mapDispatchToProps(dispatch: Dispatch<object>) {
         onReceiveRouteFromSource: (route: DirectionsRoute[]) => dispatch(fetchRouteFromSource(route)),
         onReceiveRouteFromDestination: (route: DirectionsRoute[]) => dispatch(fetchRouteFromDestination(route)),
         onToggleModal: () => dispatch(toggleModal()),
-        onShowModal: (s: string) => dispatch(showModal(s))
+        onShowModal: (s: constants.CurrentModal) => dispatch(showModal(s))
     };
 }
 
 function onClickCalculateButton(stateProps: StateProps, dispatchProps: DispatchProps) {
     dispatchProps.onToggleModal();
-    dispatchProps.onShowModal(constants.MODAL_SELECT_BASE_ROUTE);
+    dispatchProps.onShowModal(CurrentModal.BaseRoute);
     let departureTimeFromSource = new Date();
     let departureTimeFromDestination = new Date();
     departureTimeFromSource.setHours(8);

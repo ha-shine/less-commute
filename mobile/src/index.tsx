@@ -7,6 +7,7 @@ import {createStore} from 'redux';
 import {StoreState} from './types/index';
 import {Provider} from 'react-redux';
 import {rootReducer} from './reducers/index';
+import {CurrentModal} from './constants/index';
 
 const initialStore: StoreState = {
     selectedHomeAddress: null,
@@ -14,7 +15,7 @@ const initialStore: StoreState = {
     showModal: false,
     routesFromSource: [],
     routesFromDestination: [],
-    currentModal: ''
+    currentModal: CurrentModal.None
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);
