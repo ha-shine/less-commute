@@ -7,8 +7,8 @@ import {
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
-import DirectionsRoute = google.maps.DirectionsRoute;
 import {CurrentModal} from '../constants/index';
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -43,8 +43,8 @@ export function showModal(state: boolean = false, action: ToggleModalAction): bo
     }
 }
 
-export function routesFromSource(state: DirectionsRoute[] = [],
-                                 action: FetchGoogleRouteAction): DirectionsRoute[] {
+export function routesFromSource(state: IdentifiableDirectionsRoute[] = [],
+                                 action: FetchGoogleRouteAction): IdentifiableDirectionsRoute[] {
     switch (action.type) {
         case constants.FETCH_ROUTE_FROM_SOURCE:
             return action.result;
@@ -52,8 +52,8 @@ export function routesFromSource(state: DirectionsRoute[] = [],
             return state;
     }
 }
-export function routesFromDestination(state: DirectionsRoute[] = [],
-                                      action: FetchGoogleRouteAction): DirectionsRoute[] {
+export function routesFromDestination(state: IdentifiableDirectionsRoute[] = [],
+                                      action: FetchGoogleRouteAction): IdentifiableDirectionsRoute[] {
     switch (action.type) {
         case constants.FETCH_ROUTE_FROM_DESTINATION:
             return action.result;

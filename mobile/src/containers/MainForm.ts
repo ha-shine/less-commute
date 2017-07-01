@@ -8,11 +8,11 @@ import {
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import MainForm from '../components/MainForm';
-import DirectionsRoute = google.maps.DirectionsRoute;
 import DirectionsResult = google.maps.DirectionsResult;
 import {getGoogleDirection} from '../services/index';
 import * as constants from '../constants/index';
 import {CurrentModal} from '../constants/index';
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -32,8 +32,8 @@ interface DispatchProps {
     onRemoveHomeAddress: () => void;
     onSelectWorkAddress: (a: AutocompletePrediction) => void;
     onRemoveWorkAddress: () => void;
-    onReceiveRouteFromSource: (route: DirectionsRoute[]) => void;
-    onReceiveRouteFromDestination: (route: DirectionsRoute[]) => void;
+    onReceiveRouteFromSource: (route: IdentifiableDirectionsRoute[]) => void;
+    onReceiveRouteFromDestination: (route: IdentifiableDirectionsRoute[]) => void;
     onToggleModal: () => void;
     onShowModal: (s: constants.CurrentModal) => void;
 }
@@ -43,8 +43,9 @@ function mapDispatchToProps(dispatch: Dispatch<object>) {
         onRemoveHomeAddress: () => dispatch(removeHomeAddress()),
         onSelectWorkAddress: (a: AutocompletePrediction) => dispatch(selectWorkAddress(a)),
         onRemoveWorkAddress: () => dispatch(removeWorkAddress()),
-        onReceiveRouteFromSource: (route: DirectionsRoute[]) => dispatch(fetchRouteFromSource(route)),
-        onReceiveRouteFromDestination: (route: DirectionsRoute[]) => dispatch(fetchRouteFromDestination(route)),
+        onReceiveRouteFromSource: (route: IdentifiableDirectionsRoute[]) => dispatch(fetchRouteFromSource(route)),
+        onReceiveRouteFromDestination: (route: IdentifiableDirectionsRoute[]) =>
+            dispatch(fetchRouteFromDestination(route)),
         onToggleModal: () => dispatch(toggleModal()),
         onShowModal: (s: constants.CurrentModal) => dispatch(showModal(s))
     };
@@ -58,11 +59,15 @@ function onClickCalculateButton(stateProps: StateProps, dispatchProps: DispatchP
     departureTimeFromSource.setHours(8);
     departureTimeFromDestination.setHours(18);
     const callbackFromSource = (result: DirectionsResult) => {
-        const directionsRoutes = result.routes;
+        const directionsRoutes = result.routes.map((route) => {
+            return new IdentifiableDirectionsRoute(route);
+        });
         dispatchProps.onReceiveRouteFromSource(directionsRoutes);
     };
     const callbackFromDestination = (result: DirectionsResult) => {
-        const directionsRoutes = result.routes;
+        const directionsRoutes = result.routes.map((route) => {
+            return new IdentifiableDirectionsRoute(route);
+        });
         dispatchProps.onReceiveRouteFromDestination(directionsRoutes);
     };
     const source = stateProps.selectedHomeAddress as AutocompletePrediction;

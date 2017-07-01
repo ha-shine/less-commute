@@ -4,14 +4,14 @@ import LoadingAnimationModalContent from './LoadingAnimationModalContent';
 import './RouteSelectModal.css';
 import ModalOverlayContainer from './ModalOverlayContainer';
 import RouteSelectModalBody from './RouteSelectModalBody';
-import DirectionsRoute = google.maps.DirectionsRoute;
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 
 export interface Props {
     isFetching: boolean;
     sourceName: string;
     destinationName: string;
-    routesFromSource: DirectionsRoute[];
-    routesFromDestination: DirectionsRoute[];
+    routesFromSource: IdentifiableDirectionsRoute[];
+    routesFromDestination: IdentifiableDirectionsRoute[];
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {

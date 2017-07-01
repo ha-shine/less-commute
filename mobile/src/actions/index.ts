@@ -1,6 +1,6 @@
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants';
-import DirectionsRoute = google.maps.DirectionsRoute;
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -63,15 +63,15 @@ export function toggleModal(): ToggleModalAction {
 
 export interface FetchGoogleRouteAction {
     type: string;
-    result: DirectionsRoute[];
+    result: IdentifiableDirectionsRoute[];
 }
-export function fetchRouteFromSource(result: DirectionsRoute[]): FetchGoogleRouteAction {
+export function fetchRouteFromSource(result: IdentifiableDirectionsRoute[]): FetchGoogleRouteAction {
     return {
         type: constants.FETCH_ROUTE_FROM_SOURCE,
         result: result
     };
 }
-export function fetchRouteFromDestination(result: DirectionsRoute[]): FetchGoogleRouteAction {
+export function fetchRouteFromDestination(result: IdentifiableDirectionsRoute[]): FetchGoogleRouteAction {
     return {
         type: constants.FETCH_ROUTE_FROM_DESTINATION,
         result: result

@@ -1,6 +1,6 @@
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
-import DirectionsRoute = google.maps.DirectionsRoute;
 import * as constants from '../constants/index';
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -8,7 +8,7 @@ export interface StoreState {
     selectedHomeAddress: AutocompletePrediction | null;
     selectedWorkAddress: AutocompletePrediction | null;
     showModal: boolean;
-    routesFromSource: DirectionsRoute[];
-    routesFromDestination: DirectionsRoute[];
+    routesFromSource: IdentifiableDirectionsRoute[];
+    routesFromDestination: IdentifiableDirectionsRoute[];
     currentModal: constants.CurrentModal;
 }
