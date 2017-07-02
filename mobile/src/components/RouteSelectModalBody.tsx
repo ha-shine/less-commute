@@ -12,11 +12,6 @@ export default class RouteSelectModalBody extends React.Component<Props, {}> {
     render() {
         return (
             <div className="modal-body">
-                <div className="row title-row">
-                    <div className="col-xs-8"/>
-                    <div className="col-xs-2">$</div>
-                    <div className="col-xs-2">Time</div>
-                </div>
                 {this.props.routes.map((route, index) => {
                     let className = 'row selectable-row';
                     className += (this.props.selectedRouteId === route.id) ? ' selected' : '';

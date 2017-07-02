@@ -101,7 +101,6 @@ export function selectRouteFromSource(routeId: string): SelectRouteAction {
     };
 }
 export function selectRouteFromDestination(routeId: string): SelectRouteAction {
-    console.log(routeId);
     return {
         type: constants.SELECT_ROUTE_FROM_DESTINATION,
         routeId

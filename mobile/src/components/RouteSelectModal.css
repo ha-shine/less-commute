@@ -13,10 +13,6 @@
     font-size: 16px;
 }
 
-.route-select-modal-content .modal-header:nth-child(4) {
-    border-top: 1px solid #888888;
-}
-
 .route-select-modal-content .modal-header span {
     margin: 0 10px;
 }
