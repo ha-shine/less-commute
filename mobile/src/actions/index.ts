@@ -94,7 +94,6 @@ export interface SelectRouteAction {
     routeId: string;
 }
 export function selectRouteFromSource(routeId: string): SelectRouteAction {
-    console.log(routeId);
     return {
         type: constants.SELECT_ROUTE_FROM_SOURCE,
         routeId

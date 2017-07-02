@@ -24,8 +24,8 @@ export default class RouteSelectModalBody extends React.Component<Props, {}> {
                             <div className="col-xs-8">
                                 <DirectionsStepsRenderer steps={route.route.legs[0].steps}/>
                             </div>
-                            <div className="col-xs-2"/>
-                            <div className="col-xs-2"/>
+                            <div className="col-xs-2">{route.duration}</div>
+                            <div className="col-xs-2">{route.totalFare.toPrecision(3)}</div>
                         </div>
                     );
                 })}
