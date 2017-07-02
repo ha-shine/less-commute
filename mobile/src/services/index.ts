@@ -52,7 +52,7 @@ export function getGoogleDirection(from: AutocompletePrediction, to: Autocomplet
 
 export function calculateFare(step: DirectionsStep): number {
     const busNo = step.transit.line.short_name;
-    const distance = step.distance.value;
+    const distance = step.distance.value / 1000;
     if (step.transit.line.vehicle.type.toString() === 'BUS') {
         if (isExpressBus(busNo)) {
             return calculateExpreeBusFareInCents(distance) / 100;
