@@ -22,6 +22,20 @@
     padding-bottom: 0;
 }
 
+.route-select-modal-content .modal-body .values {
+    font-family: Montserrat, serif;
+}
+
+.route-select-modal-content .modal-body .duration-value,
+.route-select-modal-content .modal-body .fare-value {
+    font-size: 14px;
+}
+
+.route-select-modal-content .modal-body .duration-id,
+.route-select-modal-content .modal-body .fare-id {
+    margin-top: -10px;
+}
+
 .route-select-modal-content .modal-body .selectable-row {
     opacity: 0.66;
     margin-top: 10px;
