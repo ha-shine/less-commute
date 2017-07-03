@@ -18,7 +18,8 @@ const initialStore: StoreState = {
     selectedRouteIdFromDestination: '',
     currentModal: CurrentModal.None,
     baseRoutes: [],
-    currentPage: CurrentPage.MainMenu
+    currentPage: CurrentPage.MainMenu,
+    days: 20
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

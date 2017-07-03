@@ -3,7 +3,7 @@ import {
     ChangePageAction,
     ConfirmRouteAction,
     FetchGoogleRouteAction,
-    SelectedAddressAction, SelectRouteAction, ShowModalAction
+    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
@@ -105,6 +105,15 @@ export function currentPage(state: constants.CurrentPage = CurrentPage.MainMenu,
     }
 }
 
+export function days(state: number = 20, action: SetDaysAction): number {
+    switch (action.type) {
+        case constants.SET_DAYS:
+            return action.days;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -114,5 +123,6 @@ export const rootReducer = combineReducers<StoreState>({
     selectedRouteIdFromSource,
     selectedRouteIdFromDestination,
     baseRoutes,
-    currentPage
+    currentPage,
+    days
 });

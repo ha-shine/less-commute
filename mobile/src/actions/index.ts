@@ -131,3 +131,14 @@ export function changePage(page: constants.CurrentPage): ChangePageAction {
         page
     };
 }
+
+export interface SetDaysAction {
+    type: string;
+    days: number;
+}
+export function setDays(days: number): SetDaysAction {
+    return {
+        type: constants.SET_DAYS,
+        days
+    };
+}

@@ -14,4 +14,5 @@ export interface StoreState {
     currentModal: constants.CurrentModal;
     baseRoutes: IdentifiableDirectionsRoute[];
     currentPage: constants.CurrentPage;
+    days: number;
 }
