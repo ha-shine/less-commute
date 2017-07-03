@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import MainForm from './containers/MainForm';
 import TopBar from './components/TopBar';
 import ModalOverlay from './containers/ModalOverlay';
+import BodyContainer from './containers/BodyContainer';
 
 class App extends React.Component<{}, {}> {
     render() {
@@ -10,7 +10,7 @@ class App extends React.Component<{}, {}> {
             <div>
                 <TopBar />
                 <div className="container home-container">
-                    <MainForm />
+                    <BodyContainer />
                     <ModalOverlay />
                 </div>
             </div>

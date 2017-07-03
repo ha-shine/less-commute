@@ -120,3 +120,14 @@ export function confirmBaseRoute(routes: IdentifiableDirectionsRoute[]): Confirm
         routes
     };
 }
+
+export interface ChangePageAction {
+    type: string;
+    page: constants.CurrentPage;
+}
+export function changePage(page: constants.CurrentPage): ChangePageAction {
+    return {
+        type: constants.CHANGE_PAGE,
+        page
+    };
+}

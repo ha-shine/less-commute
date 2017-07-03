@@ -7,7 +7,7 @@ import {createStore} from 'redux';
 import {StoreState} from './types/index';
 import {Provider} from 'react-redux';
 import {rootReducer} from './reducers/index';
-import {CurrentModal} from './constants/index';
+import {CurrentModal, CurrentPage} from './constants/index';
 
 const initialStore: StoreState = {
     selectedHomeAddress: null,
@@ -17,7 +17,8 @@ const initialStore: StoreState = {
     selectedRouteIdFromSource: '',
     selectedRouteIdFromDestination: '',
     currentModal: CurrentModal.None,
-    baseRoutes: []
+    baseRoutes: [],
+    currentPage: CurrentPage.MainMenu
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

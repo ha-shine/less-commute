@@ -1,5 +1,6 @@
 import * as constants from '../constants/index';
 import {
+    ChangePageAction,
     ConfirmRouteAction,
     FetchGoogleRouteAction,
     SelectedAddressAction, SelectRouteAction, ShowModalAction
@@ -7,7 +8,7 @@ import {
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
-import {CurrentModal} from '../constants/index';
+import {CurrentModal, CurrentPage} from '../constants/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
  * Created by Shine on 6/29/2017.
@@ -94,6 +95,16 @@ export function baseRoutes(state: IdentifiableDirectionsRoute[] = [],
     }
 }
 
+export function currentPage(state: constants.CurrentPage = CurrentPage.MainMenu,
+                            action: ChangePageAction): constants.CurrentPage {
+    switch (action.type) {
+        case constants.CHANGE_PAGE:
+            return action.page;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -102,5 +113,6 @@ export const rootReducer = combineReducers<StoreState>({
     currentModal,
     selectedRouteIdFromSource,
     selectedRouteIdFromDestination,
-    baseRoutes
+    baseRoutes,
+    currentPage
 });

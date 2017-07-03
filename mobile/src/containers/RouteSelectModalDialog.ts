@@ -2,11 +2,13 @@ import {StoreState} from '../types/index';
 import {connect, Dispatch} from 'react-redux';
 import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
+    changePage,
     clearSelectedRoutes,
     confirmBaseRoute,
     hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
+import {CurrentPage} from '../constants/index';
 /**
  * Created by shine on 1/7/2017.
  */
@@ -44,7 +46,10 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>): DispatchProps {
             d(hideModal());
             d(clearSelectedRoutes());
         },
-        onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => d(confirmBaseRoute(routes))
+        onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => {
+            d(confirmBaseRoute(routes));
+            d(changePage(CurrentPage.RouteCompareMenu));
+        }
     };
 }
 
