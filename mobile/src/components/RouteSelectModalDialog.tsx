@@ -16,6 +16,8 @@ export interface Props {
     selectedRouteIdFromDestination: string;
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
+    onCloseModal: () => void;
+    onClickConfirm: () => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -31,7 +33,7 @@ export default function RouteSelectModalDialog(p: Props) {
         <ModalOverlayContainer>
             <LargeModalDialog>
                 <div className="modal-content route-select-modal-content">
-                    <span className="ion-android-close close-button"/>
+                    <span className="ion-android-close close-button" onClick={p.onCloseModal}/>
                     <div className="modal-header">
                         {p.sourceName}
                         <span className="ion-ios-arrow-thin-right"/>
@@ -53,7 +55,11 @@ export default function RouteSelectModalDialog(p: Props) {
                         selectedRouteId={p.selectedRouteIdFromDestination}
                     />
                     <div className="modal-footer">
-                        <button className="btn btn-default pull-right">
+                        <button
+                            className="btn btn-default pull-right"
+                            onClick={p.onClickConfirm}
+                            disabled={p.selectedRouteIdFromSource === '' || p.selectedRouteIdFromDestination === ''}
+                        >
                             confirm <span className="ion-ios-checkmark-empty"/>
                         </button>
                     </div>

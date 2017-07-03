@@ -13,4 +13,5 @@ export interface StoreState {
     selectedRouteIdFromSource: string;
     selectedRouteIdFromDestination: string;
     currentModal: constants.CurrentModal;
+    baseRoutes: IdentifiableDirectionsRoute[];
 }

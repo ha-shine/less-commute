@@ -17,7 +17,8 @@ const initialStore: StoreState = {
     routesFromDestination: [],
     selectedRouteIdFromSource: '',
     selectedRouteIdFromDestination: '',
-    currentModal: CurrentModal.None
+    currentModal: CurrentModal.None,
+    baseRoutes: []
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

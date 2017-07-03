@@ -1,6 +1,7 @@
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
+import {CurrentModal} from '../constants/index';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -88,6 +89,12 @@ export function showModal(modal: constants.CurrentModal): ShowModalAction {
         modal: modal
     };
 }
+export function hideModal(): ShowModalAction {
+    return {
+        type: constants.HIDE_MODAL,
+        modal: CurrentModal.None
+    };
+}
 
 export interface SelectRouteAction {
     type: string;
@@ -105,9 +112,20 @@ export function selectRouteFromDestination(routeId: string): SelectRouteAction {
         routeId
     };
 }
-export function clearSelectedRoutes(routeId: string): SelectRouteAction {
+export function clearSelectedRoutes(): SelectRouteAction {
     return {
         type: constants.CLEAR_SELECTED_ROUTE_IDS,
         routeId: ''
+    };
+}
+
+export interface ConfirmRouteAction {
+    type: string;
+    routes: IdentifiableDirectionsRoute[];
+}
+export function confirmBaseRoute(routes: IdentifiableDirectionsRoute[]): ConfirmRouteAction {
+    return {
+        type: constants.CONFIRM_BASE_ROUTES,
+        routes
     };
 }

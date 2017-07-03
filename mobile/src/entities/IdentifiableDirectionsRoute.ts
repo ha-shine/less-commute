@@ -17,8 +17,6 @@ export default class IdentifiableDirectionsRoute {
         this.totalFare = 0;
         route.legs[0].steps.forEach((step) => {
             if (step.travel_mode !== TravelMode.WALKING) {
-                console.log(step);
-                console.log(services.calculateFare(step));
                 this.totalFare += services.calculateFare(step);
             }
         });

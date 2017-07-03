@@ -1,5 +1,6 @@
 import * as constants from '../constants/index';
 import {
+    ConfirmRouteAction,
     FetchGoogleRouteAction,
     SelectedAddressAction, SelectRouteAction, ShowModalAction,
     ToggleModalAction
@@ -66,7 +67,7 @@ export function currentModal(state: constants.CurrentModal = CurrentModal.None,
                              action: ShowModalAction): constants.CurrentModal {
     switch (action.type) {
         case constants.SHOW_MODAL:
-        case constants.CLEAR_SELECTED_ROUTE_IDS:
+        case constants.HIDE_MODAL:
             return action.modal;
         default:
             return state;
@@ -93,6 +94,16 @@ export function selectedRouteIdFromDestination(state: string = '', action: Selec
     }
 }
 
+export function baseRoutes(state: IdentifiableDirectionsRoute[] = [],
+                           action: ConfirmRouteAction): IdentifiableDirectionsRoute[] {
+    switch (action.type) {
+        case constants.CONFIRM_BASE_ROUTES:
+            return action.routes;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -101,5 +112,6 @@ export const rootReducer = combineReducers<StoreState>({
     routesFromDestination,
     currentModal,
     selectedRouteIdFromSource,
-    selectedRouteIdFromDestination
+    selectedRouteIdFromDestination,
+    baseRoutes
 });
