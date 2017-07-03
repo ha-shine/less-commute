@@ -12,16 +12,7 @@ import {CurrentPage} from '../constants/index';
 /**
  * Created by shine on 1/7/2017.
  */
-export interface StateProps {
-    isFetching: boolean;
-    sourceName: string;
-    destinationName: string;
-    routesFromSource: IdentifiableDirectionsRoute[];
-    routesFromDestination: IdentifiableDirectionsRoute[];
-    selectedRouteIdFromSource: string;
-    selectedRouteIdFromDestination: string;
-}
-function mapStateToProps(s: StoreState): StateProps {
+function mapStateToProps(s: StoreState) {
     return {
         isFetching: s.routesFromDestination.length === 0 && s.routesFromSource.length === 0,
         sourceName: 'Home',
@@ -32,13 +23,8 @@ function mapStateToProps(s: StoreState): StateProps {
         selectedRouteIdFromDestination: s.selectedRouteIdFromDestination
     };
 }
-export interface DispatchProps {
-    onSelectRouteFromSource: (s: string) => void;
-    onSelectRouteFromDestination: (s: string) => void;
-    onCloseModal: () => void;
-    onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => void;
-}
-function mapDispatchToProps(d: Dispatch<SelectRouteAction>): DispatchProps {
+
+function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
     return {
         onSelectRouteFromSource: (s: string) => d(selectRouteFromSource(s)),
         onSelectRouteFromDestination: (s: string) => d(selectRouteFromDestination(s)),
@@ -53,18 +39,4 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>): DispatchProps {
     };
 }
 
-function mergeProps(state: StateProps, dispatch: DispatchProps) {
-    return {
-        ...state,
-        ...dispatch,
-        onClickConfirm: () => {
-            const routeFromSource = state.routesFromSource.find((x) => x.id === state.selectedRouteIdFromSource);
-            const routeFromDst = state.routesFromDestination.find((x) => x.id === state.selectedRouteIdFromDestination);
-            const selectedRoutes = [routeFromSource].concat([routeFromDst]) as IdentifiableDirectionsRoute[];
-            dispatch.onConfirmBaseRoutes(selectedRoutes);
-            dispatch.onCloseModal();
-        }
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(RouteSelectModalDialog);
+export default connect(mapStateToProps, mapDispatchToProps)(RouteSelectModalDialog);

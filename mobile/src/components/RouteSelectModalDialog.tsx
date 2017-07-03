@@ -17,7 +17,7 @@ export interface Props {
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
     onCloseModal: () => void;
-    onClickConfirm: () => void;
+    onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -29,6 +29,13 @@ export default function RouteSelectModalDialog(p: Props) {
             </ModalOverlayContainer>
         );
     }
+    const onClickConfirm = () => {
+        const routeFromSource = p.routesFromSource.find((x) => x.id === p.selectedRouteIdFromSource);
+        const routeFromDst = p.routesFromDestination.find((x) => x.id === p.selectedRouteIdFromDestination);
+        const selectedRoutes = [routeFromSource].concat([routeFromDst]) as IdentifiableDirectionsRoute[];
+        p.onConfirmBaseRoutes(selectedRoutes);
+        p.onCloseModal();
+    };
     return (
         <ModalOverlayContainer>
             <LargeModalDialog>
@@ -57,7 +64,7 @@ export default function RouteSelectModalDialog(p: Props) {
                     <div className="modal-footer">
                         <button
                             className="btn btn-default pull-right"
-                            onClick={p.onClickConfirm}
+                            onClick={() => onClickConfirm()}
                             disabled={p.selectedRouteIdFromSource === '' || p.selectedRouteIdFromDestination === ''}
                         >
                             confirm <span className="ion-ios-checkmark-empty"/>
