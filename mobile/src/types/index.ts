@@ -7,7 +7,6 @@ import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute
 export interface StoreState {
     selectedHomeAddress: AutocompletePrediction | null;
     selectedWorkAddress: AutocompletePrediction | null;
-    showModal: boolean;
     routesFromSource: IdentifiableDirectionsRoute[];
     routesFromDestination: IdentifiableDirectionsRoute[];
     selectedRouteIdFromSource: string;

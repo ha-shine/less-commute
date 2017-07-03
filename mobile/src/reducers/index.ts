@@ -2,8 +2,7 @@ import * as constants from '../constants/index';
 import {
     ConfirmRouteAction,
     FetchGoogleRouteAction,
-    SelectedAddressAction, SelectRouteAction, ShowModalAction,
-    ToggleModalAction
+    SelectedAddressAction, SelectRouteAction, ShowModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
@@ -30,15 +29,6 @@ export function selectedWorkAddress(state: AutocompletePrediction | null = null,
         case constants.SELECT_WORK_ADDRESS:
         case constants.REMOVE_WORK_ADDRESS:
             return action.address;
-        default:
-            return state;
-    }
-}
-
-export function showModal(state: boolean = false, action: ToggleModalAction): boolean {
-    switch (action.type) {
-        case constants.TOGGLE_MODAL:
-            return !state;
         default:
             return state;
     }
@@ -107,7 +97,6 @@ export function baseRoutes(state: IdentifiableDirectionsRoute[] = [],
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
-    showModal,
     routesFromSource,
     routesFromDestination,
     currentModal,

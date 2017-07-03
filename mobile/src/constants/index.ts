@@ -19,3 +19,7 @@ export enum CurrentModal {
     BaseRoute,
     None
 }
+export enum CurrentPage {
+    MainMenu,
+    RouteCompareMenu
+}

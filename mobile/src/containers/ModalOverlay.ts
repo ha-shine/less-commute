@@ -6,7 +6,6 @@ import ModalOverlay from '../components/ModalOverlay';
  */
 function mapStateToProps(s: StoreState) {
     return {
-        showModal: s.showModal,
         currentModal: s.currentModal
     };
 }

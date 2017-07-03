@@ -4,7 +4,7 @@ import {
     fetchRouteFromDestination,
     fetchRouteFromSource,
     removeHomeAddress, removeWorkAddress, selectHomeAddress,
-    selectWorkAddress, showModal, toggleModal
+    selectWorkAddress, showModal
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import MainForm from '../components/MainForm';
@@ -34,7 +34,6 @@ interface DispatchProps {
     onRemoveWorkAddress: () => void;
     onReceiveRouteFromSource: (route: IdentifiableDirectionsRoute[]) => void;
     onReceiveRouteFromDestination: (route: IdentifiableDirectionsRoute[]) => void;
-    onToggleModal: () => void;
     onShowModal: (s: constants.CurrentModal) => void;
 }
 function mapDispatchToProps(dispatch: Dispatch<object>) {
@@ -46,13 +45,11 @@ function mapDispatchToProps(dispatch: Dispatch<object>) {
         onReceiveRouteFromSource: (route: IdentifiableDirectionsRoute[]) => dispatch(fetchRouteFromSource(route)),
         onReceiveRouteFromDestination: (route: IdentifiableDirectionsRoute[]) =>
             dispatch(fetchRouteFromDestination(route)),
-        onToggleModal: () => dispatch(toggleModal()),
         onShowModal: (s: constants.CurrentModal) => dispatch(showModal(s))
     };
 }
 
 function onClickCalculateButton(stateProps: StateProps, dispatchProps: DispatchProps) {
-    dispatchProps.onToggleModal();
     dispatchProps.onShowModal(CurrentModal.BaseRoute);
     let departureTimeFromSource = new Date();
     let departureTimeFromDestination = new Date();

@@ -12,7 +12,6 @@ import {CurrentModal} from './constants/index';
 const initialStore: StoreState = {
     selectedHomeAddress: null,
     selectedWorkAddress: null,
-    showModal: false,
     routesFromSource: [],
     routesFromDestination: [],
     selectedRouteIdFromSource: '',

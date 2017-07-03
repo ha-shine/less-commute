@@ -4,8 +4,7 @@ import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
     clearSelectedRoutes,
     confirmBaseRoute,
-    hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource,
-    toggleModal
+    hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 /**
@@ -42,7 +41,6 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>): DispatchProps {
         onSelectRouteFromSource: (s: string) => d(selectRouteFromSource(s)),
         onSelectRouteFromDestination: (s: string) => d(selectRouteFromDestination(s)),
         onCloseModal: () => {
-            d(toggleModal());
             d(hideModal());
             d(clearSelectedRoutes());
         },

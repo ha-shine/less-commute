@@ -53,15 +53,6 @@ export function removeHomeAddress(): RemoveHomeAddressAction {
 export type SelectedAddressAction = SelectHomeAddressAction | SelectWorkAddressAction |
                                     RemoveHomeAddressAction | RemoveWorkAddressAction;
 
-export interface ToggleModalAction {
-    type: string;
-}
-export function toggleModal(): ToggleModalAction {
-    return {
-        type: constants.TOGGLE_MODAL
-    };
-}
-
 export interface FetchGoogleRouteAction {
     type: string;
     result: IdentifiableDirectionsRoute[];
