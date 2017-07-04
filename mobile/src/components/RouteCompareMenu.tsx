@@ -11,6 +11,9 @@ export function RouteCompareMenu(p: Props) {
         return (
             <div className="route-compare-menu">
                 <RouteCompareRow routePair={p.baseRoutes} days={p.days} />
+                <div className="add-route-button">
+                    +
+                </div>
             </div>
         );
     }
@@ -28,7 +31,7 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number}) {
                 <div className="identifier">min</div>
             </div>
             <div className="col-xs-2 cost">
-                <div className="value">{totalCost}</div>
+                <div className="value">{totalCost.toPrecision(3)}</div>
                 <div className="identifier">SGD</div>
             </div>
         </div>

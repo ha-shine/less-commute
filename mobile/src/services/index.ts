@@ -50,22 +50,35 @@ export function getGoogleDirection(from: AutocompletePrediction, to: Autocomplet
     });
 }
 
-export function calculateFare(step: DirectionsStep): number {
-    const busNo = step.transit.line.short_name;
-    const distance = step.distance.value / 1000;
-    if (step.transit.line.vehicle.type.toString() === 'BUS') {
-        if (isExpressBus(busNo)) {
-            return calculateExpreeBusFareInCents(distance) / 100;
-        } else if (isChinatownDirectBus(busNo)) {
-            return 2;
-        } else if (isNightRider(busNo)) {
-            return 3.5;
+export function calculateFare(steps: DirectionsStep[]): number {
+    let totalNormalDistance = 0; // 1000
+    let totalExpressDistance = 0;
+    let totalCost = 0;
+
+    for (var step of steps) {
+        if (step.travel_mode === TravelMode.WALKING) {
+            continue;
         } else {
-            return calculateTrunkBusFareInCents(distance) / 100;
+            if (step.transit.line.vehicle.type.toString() === 'BUS') {
+                const busNo = step.transit.line.short_name;
+                if (isExpressBus((busNo))) {
+                    totalExpressDistance += step.distance.value;
+                } else if (isChinatownDirectBus(busNo)) {
+                    totalCost += 2;
+                } else if (isNightRider((busNo))) {
+                    totalCost += 3.5;
+                } else {
+                    totalNormalDistance += step.distance.value;
+                }
+            } else {
+                totalNormalDistance += step.distance.value;
+            }
         }
-    } else {
-        return calculateMRTorLRTFareInCents(distance) / 100;
     }
+
+    const totalExpressCost = calculateExpreeBusFareInCents(totalExpressDistance / 1000) / 100;
+    const totalNormCost = calculateTrunkBusFareInCents(totalNormalDistance / 1000) / 100;
+    return totalCost + totalExpressCost + totalNormCost;
 }
 
 function calculateExpreeBusFareInCents(distance: number): number {

@@ -1,5 +1,4 @@
 import DirectionsRoute = google.maps.DirectionsRoute;
-import TravelMode = google.maps.TravelMode;
 import * as services from '../services/index';
 const uuidv4 = require('uuid/v4');
 /**
@@ -14,11 +13,6 @@ export default class IdentifiableDirectionsRoute {
         this.route = route;
         this.id = uuidv4();
         this.duration = Math.ceil(route.legs[0].duration.value / 60);
-        this.totalFare = 0;
-        route.legs[0].steps.forEach((step) => {
-            if (step.travel_mode !== TravelMode.WALKING) {
-                this.totalFare += services.calculateFare(step);
-            }
-        });
+        this.totalFare = services.calculateFare(route.legs[0].steps);
     }
 }
