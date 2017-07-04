@@ -7,16 +7,17 @@ import {
     confirmBaseRoute,
     hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
-import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import {CurrentPage} from '../constants/index';
+import DirectionsRoutePair from '../entities/DirectionsRoutePair';
+import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 /**
  * Created by shine on 1/7/2017.
  */
 function mapStateToProps(s: StoreState) {
     return {
         isFetching: s.routesFromDestination.length === 0 && s.routesFromSource.length === 0,
-        sourceName: 'Home',
-        destinationName: 'Work',
+        source: s.selectedHomeAddress as AutocompletePrediction,
+        destination: s.selectedWorkAddress as AutocompletePrediction,
         routesFromSource: s.routesFromSource,
         routesFromDestination: s.routesFromDestination,
         selectedRouteIdFromSource: s.selectedRouteIdFromSource,
@@ -32,7 +33,7 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
             d(hideModal());
             d(clearSelectedRoutes());
         },
-        onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => {
+        onConfirmBaseRoutes: (routes: DirectionsRoutePair) => {
             d(confirmBaseRoute(routes));
             d(changePage(CurrentPage.RouteCompareMenu));
         }

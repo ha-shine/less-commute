@@ -2,6 +2,7 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import {CurrentModal} from '../constants/index';
+import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -112,12 +113,18 @@ export function clearSelectedRoutes(): SelectRouteAction {
 
 export interface ConfirmRouteAction {
     type: string;
-    routes: IdentifiableDirectionsRoute[];
+    routes: DirectionsRoutePair | null;
 }
-export function confirmBaseRoute(routes: IdentifiableDirectionsRoute[]): ConfirmRouteAction {
+export function confirmBaseRoute(routes: DirectionsRoutePair): ConfirmRouteAction {
     return {
         type: constants.CONFIRM_BASE_ROUTES,
         routes
+    };
+}
+export function clearBaseRoute(): ConfirmRouteAction {
+    return {
+        type: constants.CLEAR_BASE_ROUTES,
+        routes: null
     };
 }
 

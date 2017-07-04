@@ -17,7 +17,7 @@ const initialStore: StoreState = {
     selectedRouteIdFromSource: '',
     selectedRouteIdFromDestination: '',
     currentModal: CurrentModal.None,
-    baseRoutes: [],
+    baseRoutes: null,
     currentPage: CurrentPage.MainMenu,
     days: 20
 };

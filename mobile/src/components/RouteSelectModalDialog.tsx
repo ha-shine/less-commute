@@ -5,11 +5,13 @@ import './RouteSelectModal.css';
 import ModalOverlayContainer from './ModalOverlayContainer';
 import RouteSelectModalBody from './RouteSelectModalBody';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
+import DirectionsRoutePair from '../entities/DirectionsRoutePair';
+import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 
 interface Props {
     isFetching: boolean;
-    sourceName: string;
-    destinationName: string;
+    source: AutocompletePrediction;
+    destination: AutocompletePrediction;
     routesFromSource: IdentifiableDirectionsRoute[];
     routesFromDestination: IdentifiableDirectionsRoute[];
     selectedRouteIdFromSource: string;
@@ -17,7 +19,7 @@ interface Props {
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
     onCloseModal: () => void;
-    onConfirmBaseRoutes: (routes: IdentifiableDirectionsRoute[]) => void;
+    onConfirmBaseRoutes: (routes: DirectionsRoutePair) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -32,8 +34,9 @@ export default function RouteSelectModalDialog(p: Props) {
     const onClickConfirm = () => {
         const routeFromSource = p.routesFromSource.find((x) => x.id === p.selectedRouteIdFromSource);
         const routeFromDst = p.routesFromDestination.find((x) => x.id === p.selectedRouteIdFromDestination);
-        const selectedRoutes = [routeFromSource].concat([routeFromDst]) as IdentifiableDirectionsRoute[];
-        p.onConfirmBaseRoutes(selectedRoutes);
+        const routePair = new DirectionsRoutePair(p.source, routeFromSource as IdentifiableDirectionsRoute,
+                                                  routeFromDst as IdentifiableDirectionsRoute);
+        p.onConfirmBaseRoutes(routePair);
         p.onCloseModal();
     };
     return (
@@ -42,9 +45,9 @@ export default function RouteSelectModalDialog(p: Props) {
                 <div className="modal-content route-select-modal-content">
                     <span className="ion-android-close close-button" onClick={p.onCloseModal}/>
                     <div className="modal-header">
-                        {p.sourceName}
+                        {p.source.description}
                         <span className="ion-ios-arrow-thin-right"/>
-                        {p.destinationName}
+                        {p.destination.description}
                     </div>
                     <RouteSelectModalBody
                         routes={p.routesFromSource}
@@ -52,9 +55,9 @@ export default function RouteSelectModalDialog(p: Props) {
                         selectedRouteId={p.selectedRouteIdFromSource}
                     />
                     <div className="modal-header">
-                        {p.destinationName}
+                        {p.destination.description}
                         <span className="ion-ios-arrow-thin-right"/>
-                        {p.sourceName}
+                        {p.source.description}
                     </div>
                     <RouteSelectModalBody
                         routes={p.routesFromDestination}

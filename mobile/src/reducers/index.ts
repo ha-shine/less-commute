@@ -10,6 +10,7 @@ import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
 import {CurrentModal, CurrentPage} from '../constants/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
+import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -85,8 +86,8 @@ export function selectedRouteIdFromDestination(state: string = '', action: Selec
     }
 }
 
-export function baseRoutes(state: IdentifiableDirectionsRoute[] = [],
-                           action: ConfirmRouteAction): IdentifiableDirectionsRoute[] {
+export function baseRoutes(state: DirectionsRoutePair | null = null,
+                           action: ConfirmRouteAction): DirectionsRoutePair | null {
     switch (action.type) {
         case constants.CONFIRM_BASE_ROUTES:
             return action.routes;
