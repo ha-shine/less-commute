@@ -7,13 +7,13 @@ import './GooglePlaceAutocomplete.css';
 
 const enhanceWithClickOutside = require('react-click-outside');
 
-export interface State {
+interface State {
     textboxValue: string;
     predictions: AutocompletePrediction[];
     selectedPrediction: AutocompletePrediction | null;
 }
 
-export interface Props {
+interface Props {
     disabled: boolean;
     onSelectAddress: (address: AutocompletePrediction) => void;
     onRemoveAddress: () => void;

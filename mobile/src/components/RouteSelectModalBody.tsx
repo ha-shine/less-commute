@@ -3,7 +3,7 @@ import DirectionsStepsRenderer from './DirectionsStepsRenderer';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 const uuidv4 = require('uuid/v4');
 
-export interface Props {
+interface Props {
     routes: IdentifiableDirectionsRoute[];
     onSelectRoute: (id: string) => void;
     selectedRouteId: string;

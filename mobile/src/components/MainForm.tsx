@@ -15,7 +15,7 @@ import {
     SelectWorkAddressAction, SetDaysAction, ShowModalAction
 } from '../actions/index';
 
-export interface Props {
+interface Props {
     selectedWorkAddress: AutocompletePrediction | null;
     selectedHomeAddress: AutocompletePrediction | null;
     onSelectHomeAddress: (address: AutocompletePrediction) => SelectHomeAddressAction;

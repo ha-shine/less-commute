@@ -6,7 +6,7 @@ import ModalOverlayContainer from './ModalOverlayContainer';
 import RouteSelectModalBody from './RouteSelectModalBody';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 
-export interface Props {
+interface Props {
     isFetching: boolean;
     sourceName: string;
     destinationName: string;

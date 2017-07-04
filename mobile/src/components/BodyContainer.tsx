@@ -3,7 +3,7 @@ import * as constants from '../constants/index';
 import {CurrentPage} from '../constants/index';
 import MainForm from '../containers/MainForm';
 
-export interface Props {
+interface Props {
     currentPage: constants.CurrentPage;
 }
 export function BodyContainer(p: Props) {

@@ -4,7 +4,7 @@ import './ModalOverlay.css';
 import RouteSelectModalDialog from '../containers/RouteSelectModalDialog';
 import {CurrentModal} from '../constants/index';
 
-export interface Props {
+interface Props {
     currentModal: constants.CurrentModal;
 }
 export default function ModalOverlay(props: Props) {

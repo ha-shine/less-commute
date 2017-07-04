@@ -5,7 +5,7 @@ import TransitLine = google.maps.TransitLine;
 import './DirectionsStepsRenderer.css';
 const uuidv4 = require('uuid/v4');
 
-export interface Props {
+interface Props {
     steps: DirectionsStep[];
 }
 export default class DirectionsStepsRenderer extends React.Component<Props, {}> {
