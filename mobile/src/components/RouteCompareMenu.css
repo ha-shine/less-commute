@@ -1,0 +1,25 @@
+.route-compare-menu .duration,
+.route-compare-menu .cost {
+    font-family: Montserrat, serif;
+    text-align: center;
+}
+
+.route-compare-menu .duration .value,
+.route-compare-menu .cost .value {
+    font-size: 14px;
+}
+
+.route-compare-menu .duration .identifier,
+.route-compare-menu .cost .identifier {
+    margin-top: -10px;
+}
+
+.route-compare-menu .comparer-row {
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 6px;
+}
+
+.route-compare-menu .comparer-row .col-xs-8 {
+    overflow: hidden;
+    padding-top: 5px;
+}
