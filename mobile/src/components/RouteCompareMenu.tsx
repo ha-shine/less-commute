@@ -5,13 +5,14 @@ import './RouteCompareMenu.css';
 interface Props {
     baseRoutes: DirectionsRoutePair | null;
     days: number;
+    onClickAddRouteBtn: () => void;
 }
 export function RouteCompareMenu(p: Props) {
     if (p.baseRoutes !== null) {
         return (
             <div className="route-compare-menu">
                 <RouteCompareRow routePair={p.baseRoutes} days={p.days} />
-                <div className="add-route-button">
+                <div className="add-route-button" onClick={p.onClickAddRouteBtn}>
                     +
                 </div>
             </div>

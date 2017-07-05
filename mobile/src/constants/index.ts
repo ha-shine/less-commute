@@ -15,11 +15,14 @@ export const CONFIRM_BASE_ROUTES = 'CONFIRM_BASE_ROUTES';
 export const CLEAR_BASE_ROUTES = 'CLEAR_BASE_ROUTES';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SET_DAYS = 'SET_DAYS';
+export const CHOOSE_ADDITIONAL_ADDRESS = 'CHOOSE_ADDITIONAL_ADDRESS';
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 export enum CurrentModal {
     BaseRoute,
+    NewRouteModal,
+    NewRouteSecondModal,
     None
 }
 export enum CurrentPage {

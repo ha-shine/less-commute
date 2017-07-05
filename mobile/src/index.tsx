@@ -19,7 +19,8 @@ const initialStore: StoreState = {
     currentModal: CurrentModal.None,
     baseRoutes: null,
     currentPage: CurrentPage.MainMenu,
-    days: 20
+    days: 20,
+    additionalAddress: null
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

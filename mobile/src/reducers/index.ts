@@ -1,6 +1,6 @@
 import * as constants from '../constants/index';
 import {
-    ChangePageAction,
+    ChangePageAction, ChooseAdditionalAddressAction,
     ConfirmRouteAction,
     FetchGoogleRouteAction,
     SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction
@@ -115,6 +115,16 @@ export function days(state: number = 20, action: SetDaysAction): number {
     }
 }
 
+export function additionalAddress(state: AutocompletePrediction | null = null,
+                                  action: ChooseAdditionalAddressAction): AutocompletePrediction | null {
+    switch (action.type) {
+        case constants.CHOOSE_ADDITIONAL_ADDRESS:
+            return action.address;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -125,5 +135,6 @@ export const rootReducer = combineReducers<StoreState>({
     selectedRouteIdFromDestination,
     baseRoutes,
     currentPage,
-    days
+    days,
+    additionalAddress
 });

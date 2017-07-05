@@ -16,4 +16,5 @@ export interface StoreState {
     baseRoutes: DirectionsRoutePair | null;
     currentPage: constants.CurrentPage;
     days: number;
+    additionalAddress: AutocompletePrediction | null;
 }

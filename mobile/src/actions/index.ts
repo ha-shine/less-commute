@@ -149,3 +149,20 @@ export function setDays(days: number): SetDaysAction {
         days
     };
 }
+
+export interface ChooseAdditionalAddressAction {
+    type: string;
+    address: AutocompletePrediction | null;
+}
+export function chooseAdditionalAddress(address: AutocompletePrediction): ChooseAdditionalAddressAction {
+    return {
+        type: constants.CHOOSE_ADDITIONAL_ADDRESS,
+        address
+    };
+}
+export function clearAdditionalAddress(): ChooseAdditionalAddressAction {
+    return {
+        type: constants.CHOOSE_ADDITIONAL_ADDRESS,
+        address: null
+    };
+}
