@@ -11,11 +11,10 @@ interface Props {
 export default function ModalOverlay(props: Props) {
     switch (props.currentModal) {
         case CurrentModal.BaseRoute:
+        case CurrentModal.NewRouteSecondModal:
             return <RouteSelectModalDialog />;
         case CurrentModal.NewRouteModal:
             return <NewRouteModalDialog />;
-        case CurrentModal.NewRouteSecondModal:
-            return null;
         default:
             return null;
     }

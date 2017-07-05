@@ -2,7 +2,7 @@ import {StoreState} from '../types/index';
 import {connect, Dispatch} from 'react-redux';
 import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
-    changePage,
+    changePage, clearAdditionalAddress,
     clearSelectedRoutes,
     confirmBaseRoute,
     hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
@@ -14,9 +14,13 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
  * Created by shine on 1/7/2017.
  */
 function mapStateToProps(s: StoreState) {
+    let source = s.selectedHomeAddress;
+    if (s.additionalAddress !== null) {
+        source = s.additionalAddress;
+    }
     return {
         isFetching: s.routesFromDestination.length === 0 && s.routesFromSource.length === 0,
-        source: s.selectedHomeAddress as AutocompletePrediction,
+        source: source as AutocompletePrediction,
         destination: s.selectedWorkAddress as AutocompletePrediction,
         routesFromSource: s.routesFromSource,
         routesFromDestination: s.routesFromDestination,
@@ -32,8 +36,9 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
         onCloseModal: () => {
             d(hideModal());
             d(clearSelectedRoutes());
+            d(clearAdditionalAddress());
         },
-        onConfirmBaseRoutes: (routes: DirectionsRoutePair) => {
+        onConfirmRoutes: (routes: DirectionsRoutePair) => {
             d(confirmBaseRoute(routes));
             d(changePage(CurrentPage.RouteCompareMenu));
         }

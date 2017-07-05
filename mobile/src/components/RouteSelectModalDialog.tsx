@@ -19,7 +19,7 @@ interface Props {
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
     onCloseModal: () => void;
-    onConfirmBaseRoutes: (routes: DirectionsRoutePair) => void;
+    onConfirmRoutes: (routes: DirectionsRoutePair) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -36,7 +36,7 @@ export default function RouteSelectModalDialog(p: Props) {
         const routeFromDst = p.routesFromDestination.find((x) => x.id === p.selectedRouteIdFromDestination);
         const routePair = new DirectionsRoutePair(p.source, routeFromSource as IdentifiableDirectionsRoute,
                                                   routeFromDst as IdentifiableDirectionsRoute);
-        p.onConfirmBaseRoutes(routePair);
+        p.onConfirmRoutes(routePair);
         p.onCloseModal();
     };
     return (

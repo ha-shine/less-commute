@@ -4,13 +4,19 @@ import ModalOverlayContainer from './ModalOverlayContainer';
 import GooglePlaceAutocomplete from './GooglePlaceAutocomplete';
 import './NewRouteModalDialog.css';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
-import {ChooseAdditionalAddressAction, ShowModalAction} from '../actions/index';
+import {ChooseAdditionalAddressAction, FetchGoogleRouteAction, ShowModalAction} from '../actions/index';
+import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
+import DirectionsResult = google.maps.DirectionsResult;
+import {getGoogleDirection} from '../services/index';
 
 interface Props {
-    onChooseAdditionalAddress: (a: AutocompletePrediction) => ChooseAdditionalAddressAction;
-    onClearAdditionalAddress: () => ChooseAdditionalAddressAction;
+    workAddress: AutocompletePrediction;
     onHideModal: () => ShowModalAction;
     onShowNextStage: () => ShowModalAction;
+    fetchRoutesFromSource: (routes: IdentifiableDirectionsRoute[]) => FetchGoogleRouteAction;
+    fetchRoutesFromDestination: (routes: IdentifiableDirectionsRoute[]) => FetchGoogleRouteAction;
+    chooseAdditionalAddress: (a: AutocompletePrediction) => ChooseAdditionalAddressAction;
+    clearAdditionalAddress: () => ChooseAdditionalAddressAction;
 }
 interface State {
     selectedAddress: AutocompletePrediction | null;
@@ -23,7 +29,7 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
         };
     }
     onCloseModal = () => {
-        this.props.onClearAdditionalAddress();
+        this.props.clearAdditionalAddress();
         this.props.onHideModal();
     }
     onSelectAddress = (prediction: AutocompletePrediction) => {
@@ -38,9 +44,31 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
     }
     onClickNext= () => {
         if (this.state.selectedAddress !== null) {
-            this.props.onChooseAdditionalAddress(this.state.selectedAddress);
+            this.fetchRoutes();
             this.props.onShowNextStage();
         }
+    }
+    fetchRoutes = () => {
+        const source = this.state.selectedAddress as AutocompletePrediction;
+        const dstn = this.props.workAddress;
+        let departureTimeFromSource = new Date();
+        let departureTimeFromDestination = new Date();
+        departureTimeFromSource.setHours(8);
+        departureTimeFromDestination.setHours(18);
+        const callbackFromSource = (result: DirectionsResult) => {
+            const directionsRoutes = result.routes.map((route) => {
+                return new IdentifiableDirectionsRoute(route);
+            });
+            this.props.fetchRoutesFromSource(directionsRoutes);
+        };
+        const callbackFromDestination = (result: DirectionsResult) => {
+            const directionsRoutes = result.routes.map((route) => {
+                return new IdentifiableDirectionsRoute(route);
+            });
+            this.props.fetchRoutesFromDestination(directionsRoutes);
+        };
+        getGoogleDirection(source, dstn, departureTimeFromSource, callbackFromSource);
+        getGoogleDirection(dstn, source, departureTimeFromDestination, callbackFromDestination);
     }
     render () {
         return (

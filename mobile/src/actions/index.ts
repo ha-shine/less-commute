@@ -164,5 +164,5 @@ export function clearAdditionalAddress(): ChooseAdditionalAddressAction {
     return {
         type: constants.CHOOSE_ADDITIONAL_ADDRESS,
         address: null
-    };
+    }
 }
