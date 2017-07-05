@@ -75,13 +75,15 @@ export function calculateFare(steps: DirectionsStep[]): number {
             }
         }
     }
-
     const totalExpressCost = calculateExpreeBusFareInCents(totalExpressDistance / 1000) / 100;
     const totalNormCost = calculateTrunkBusFareInCents(totalNormalDistance / 1000) / 100;
     return totalCost + totalExpressCost + totalNormCost;
 }
 
 function calculateExpreeBusFareInCents(distance: number): number {
+    if (distance <= 0) {
+        return 0;
+    }
     if (distance <= 6.2) {
         return 137 + Math.ceil(distance - 3.2) * 10;
     }
@@ -110,6 +112,9 @@ function calculateExpreeBusFareInCents(distance: number): number {
 }
 
 function calculateMRTorLRTFareInCents(distance: number): number {
+    if (distance <= 0) {
+        return 0;
+    }
     if (distance <= 6.2) {
         return 77 + Math.ceil(distance - 3.2) * 10;
     }
