@@ -9,7 +9,8 @@ import {CurrentModal} from '../constants/index';
 function mapStateToProps(s: StoreState) {
     return {
         baseRoutes: s.baseRoutes,
-        days: s.days
+        days: s.days,
+        additionalRoutes: s.additionalRoutes
     };
 }
 

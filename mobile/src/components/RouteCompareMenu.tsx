@@ -6,12 +6,20 @@ interface Props {
     baseRoutes: DirectionsRoutePair | null;
     days: number;
     onClickAddRouteBtn: () => void;
+    additionalRoutes: DirectionsRoutePair[];
 }
 export function RouteCompareMenu(p: Props) {
     if (p.baseRoutes !== null) {
+        const additionalRoutesDisplay = p.additionalRoutes.map((x) => {
+            return (
+                <RouteCompareRow key={x.id} routePair={x} days={p.days} />
+            );
+        });
+
         return (
             <div className="route-compare-menu">
                 <RouteCompareRow routePair={p.baseRoutes} days={p.days} />
+                {additionalRoutesDisplay}
                 <div className="add-route-button" onClick={p.onClickAddRouteBtn}>
                     +
                 </div>
@@ -32,7 +40,7 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number}) {
                 <div className="identifier">min</div>
             </div>
             <div className="col-xs-2 cost">
-                <div className="value">{totalCost.toPrecision(3)}</div>
+                <div className="value">{totalCost.toFixed(2)}</div>
                 <div className="identifier">SGD</div>
             </div>
         </div>

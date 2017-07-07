@@ -164,5 +164,27 @@ export function clearAdditionalAddress(): ChooseAdditionalAddressAction {
     return {
         type: constants.CHOOSE_ADDITIONAL_ADDRESS,
         address: null
-    }
+    };
+}
+
+export interface AddAdditionalRoutesAction {
+    type: string;
+    pair: DirectionsRoutePair;
+}
+export function addAdditionalRoutes(pair: DirectionsRoutePair): AddAdditionalRoutesAction {
+    return {
+        type: constants.ADD_ADDITIONAL_ROUTES,
+        pair
+    };
+}
+
+export interface RemoveAdditionalRoutesAction {
+    type: string;
+    pairId: string;
+}
+export function removeAdditionalRoutes(pairId: string): RemoveAdditionalRoutesAction {
+    return {
+        type: constants.REMOVE_ADDITIONAL_ROUTES,
+        pairId
+    };
 }

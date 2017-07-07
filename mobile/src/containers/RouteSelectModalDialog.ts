@@ -2,6 +2,7 @@ import {StoreState} from '../types/index';
 import {connect, Dispatch} from 'react-redux';
 import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
+    addAdditionalRoutes,
     changePage, clearAdditionalAddress,
     clearSelectedRoutes,
     confirmBaseRoute,
@@ -15,7 +16,7 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
  */
 function mapStateToProps(s: StoreState) {
     let source = s.selectedHomeAddress;
-    if (s.currentModal === CurrentModal.NewRouteModal) {
+    if (s.currentModal === CurrentModal.NewRouteSecondModal) {
         source = s.additionalAddress;
     }
     return {
@@ -42,6 +43,9 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
         onConfirmBaseRoutes: (routes: DirectionsRoutePair) => {
             d(confirmBaseRoute(routes));
             d(changePage(CurrentPage.RouteCompareMenu));
+        },
+        onConfirmAdditionalRoutes: (routes: DirectionsRoutePair) => {
+            d(addAdditionalRoutes(routes));
         }
     };
 }

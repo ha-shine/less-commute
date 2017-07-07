@@ -45,6 +45,7 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
     onClickNext= () => {
         if (this.state.selectedAddress !== null) {
             this.fetchRoutes();
+            this.props.chooseAdditionalAddress(this.state.selectedAddress);
             this.props.onShowNextStage();
         }
     }

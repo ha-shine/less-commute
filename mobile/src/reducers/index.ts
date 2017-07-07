@@ -1,8 +1,9 @@
 import * as constants from '../constants/index';
 import {
+    AddAdditionalRoutesAction,
     ChangePageAction, ChooseAdditionalAddressAction,
     ConfirmRouteAction,
-    FetchGoogleRouteAction,
+    FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
     SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
@@ -125,6 +126,22 @@ export function additionalAddress(state: AutocompletePrediction | null = null,
     }
 }
 
+export function additionalRoutes(state: DirectionsRoutePair[] = [],
+                                 action: AddAdditionalRoutesAction | RemoveAdditionalRoutesAction) {
+    let additionalRoutes = state.slice();
+    switch (action.type) {
+        case constants.ADD_ADDITIONAL_ROUTES:
+            const addAction = action as AddAdditionalRoutesAction;
+            additionalRoutes.push(addAction.pair);
+            return additionalRoutes;
+        case constants.REMOVE_ADDITIONAL_ROUTES:
+            const removeAction = action as RemoveAdditionalRoutesAction;
+            return additionalRoutes.filter((x) => x.id !== removeAction.pairId);
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -136,5 +153,6 @@ export const rootReducer = combineReducers<StoreState>({
     baseRoutes,
     currentPage,
     days,
-    additionalAddress
+    additionalAddress,
+    additionalRoutes
 });

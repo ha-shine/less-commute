@@ -29,7 +29,7 @@ export default class RouteSelectModalBody extends React.Component<Props, {}> {
                                 <div className="duration-id">min</div>
                             </div>
                             <div className="col-xs-2 text-center values">
-                                <div className="fare-value">{route.totalFare.toPrecision(3)}</div>
+                                <div className="fare-value">{route.totalFare.toFixed(2)}</div>
                                 <div className="fare-id">SGD</div>
                             </div>
                         </div>
