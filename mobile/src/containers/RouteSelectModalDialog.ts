@@ -7,7 +7,7 @@ import {
     confirmBaseRoute,
     hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
-import {CurrentPage} from '../constants/index';
+import {CurrentModal, CurrentPage} from '../constants/index';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 /**
@@ -15,10 +15,11 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
  */
 function mapStateToProps(s: StoreState) {
     let source = s.selectedHomeAddress;
-    if (s.additionalAddress !== null) {
+    if (s.currentModal === CurrentModal.NewRouteModal) {
         source = s.additionalAddress;
     }
     return {
+        currentModal: s.currentModal,
         isFetching: s.routesFromDestination.length === 0 && s.routesFromSource.length === 0,
         source: source as AutocompletePrediction,
         destination: s.selectedWorkAddress as AutocompletePrediction,
@@ -38,7 +39,7 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
             d(clearSelectedRoutes());
             d(clearAdditionalAddress());
         },
-        onConfirmRoutes: (routes: DirectionsRoutePair) => {
+        onConfirmBaseRoutes: (routes: DirectionsRoutePair) => {
             d(confirmBaseRoute(routes));
             d(changePage(CurrentPage.RouteCompareMenu));
         }

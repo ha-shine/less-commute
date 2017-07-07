@@ -7,8 +7,10 @@ import RouteSelectModalBody from './RouteSelectModalBody';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
+import * as constants from '../constants/index';
 
 interface Props {
+    currentModal: constants.CurrentModal;
     isFetching: boolean;
     source: AutocompletePrediction;
     destination: AutocompletePrediction;
@@ -19,7 +21,7 @@ interface Props {
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
     onCloseModal: () => void;
-    onConfirmRoutes: (routes: DirectionsRoutePair) => void;
+    onConfirmBaseRoutes: (routes: DirectionsRoutePair) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
     if (p.isFetching) {
@@ -36,7 +38,7 @@ export default function RouteSelectModalDialog(p: Props) {
         const routeFromDst = p.routesFromDestination.find((x) => x.id === p.selectedRouteIdFromDestination);
         const routePair = new DirectionsRoutePair(p.source, routeFromSource as IdentifiableDirectionsRoute,
                                                   routeFromDst as IdentifiableDirectionsRoute);
-        p.onConfirmRoutes(routePair);
+        p.onConfirmBaseRoutes(routePair);
         p.onCloseModal();
     };
     return (
