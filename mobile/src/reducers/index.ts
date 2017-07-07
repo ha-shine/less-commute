@@ -41,6 +41,7 @@ export function routesFromSource(state: IdentifiableDirectionsRoute[] = [],
                                  action: FetchGoogleRouteAction): IdentifiableDirectionsRoute[] {
     switch (action.type) {
         case constants.FETCH_ROUTE_FROM_SOURCE:
+        case constants.CLEAR_ROUTE_FROM_SOURCE:
             return action.result;
         default:
             return state;
@@ -50,6 +51,7 @@ export function routesFromDestination(state: IdentifiableDirectionsRoute[] = [],
                                       action: FetchGoogleRouteAction): IdentifiableDirectionsRoute[] {
     switch (action.type) {
         case constants.FETCH_ROUTE_FROM_DESTINATION:
+        case constants.CLEAR_ROUTE_FROM_DESTINATION:
             return action.result;
         default:
             return state;

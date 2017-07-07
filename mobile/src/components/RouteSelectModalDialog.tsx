@@ -12,7 +12,6 @@ import {CurrentModal} from '../constants/index';
 
 interface Props {
     currentModal: constants.CurrentModal;
-    isFetching: boolean;
     source: AutocompletePrediction;
     destination: AutocompletePrediction;
     routesFromSource: IdentifiableDirectionsRoute[];
@@ -26,7 +25,7 @@ interface Props {
     onConfirmAdditionalRoutes: (routes: DirectionsRoutePair) => void;
 }
 export default function RouteSelectModalDialog(p: Props) {
-    if (p.isFetching) {
+    if (p.routesFromSource === [] || p.routesFromDestination === []) {
         return (
             <ModalOverlayContainer>
                 <LargeModalDialog>

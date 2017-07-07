@@ -3,7 +3,7 @@ import {connect, Dispatch} from 'react-redux';
 import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
     addAdditionalRoutes,
-    changePage, clearAdditionalAddress,
+    changePage, clearAdditionalAddress, clearRouteFromDestination, clearRouteFromSource,
     clearSelectedRoutes,
     confirmBaseRoute,
     hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
@@ -37,6 +37,8 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
         onSelectRouteFromDestination: (s: string) => d(selectRouteFromDestination(s)),
         onCloseModal: () => {
             d(hideModal());
+            d(clearRouteFromSource());
+            d(clearRouteFromDestination());
             d(clearSelectedRoutes());
             d(clearAdditionalAddress());
         },

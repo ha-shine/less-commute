@@ -64,10 +64,22 @@ export function fetchRouteFromSource(result: IdentifiableDirectionsRoute[]): Fet
         result: result
     };
 }
+export function clearRouteFromSource(): FetchGoogleRouteAction {
+    return {
+        type: constants.CLEAR_ROUTE_FROM_SOURCE,
+        result: []
+    };
+}
 export function fetchRouteFromDestination(result: IdentifiableDirectionsRoute[]): FetchGoogleRouteAction {
     return {
         type: constants.FETCH_ROUTE_FROM_DESTINATION,
         result: result
+    };
+}
+export function clearRouteFromDestination(): FetchGoogleRouteAction {
+    return {
+        type: constants.CLEAR_ROUTE_FROM_DESTINATION,
+        result: []
     };
 }
 
