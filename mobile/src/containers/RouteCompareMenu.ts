@@ -1,7 +1,7 @@
 import {StoreState} from '../types/index';
 import {connect, Dispatch} from 'react-redux';
 import {RouteCompareMenu} from '../components/RouteCompareMenu';
-import {collapseRoute, expandRoute, showModal} from '../actions/index';
+import {collapseRoute, expandRoute, removeAdditionalRoutes, showModal} from '../actions/index';
 import {CurrentModal} from '../constants/index';
 /**
  * Created by shine on 5/7/2017.
@@ -19,7 +19,8 @@ function mapDispatchToProps(d: Dispatch<object>) {
     return {
         onClickAddRouteBtn: () => d(showModal(CurrentModal.NewRouteModal)),
         onExpandRoute: (routeId: string) => d(expandRoute(routeId)),
-        onCollapseRoute: () => d(collapseRoute())
+        onCollapseRoute: () => d(collapseRoute()),
+        onDeleteRoute: (pairId: string) => d(removeAdditionalRoutes(pairId))
     };
 }
 

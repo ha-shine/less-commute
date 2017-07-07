@@ -11,24 +11,40 @@ interface Props {
     expandedRouteId: string;
     onExpandRoute: (routeId: string) => void;
     onCollapseRoute: () => void;
+    onDeleteRoute: (pairId: string) => void;
 }
 export function RouteCompareMenu(p: Props) {
     if (p.baseRoutes !== null) {
         const additionalRoutesDisplay = p.additionalRoutes.map((x) => {
             if (x.id === p.expandedRouteId) {
                 return (
-                    <ExpandedRouteCompareRow key={x.id} routePair={x} days={p.days} onAction={p.onCollapseRoute} />
+                    <ExpandedRouteCompareRow
+                        key={x.id}
+                        routePair={x}
+                        days={p.days}
+                        onAction={p.onCollapseRoute}
+                        deletable={true}
+                        onClickDelete={(pairId: string) => p.onDeleteRoute(pairId)}
+                    />
                 );
             } else {
                 return (
-                    <RouteCompareRow key={x.id} routePair={x} days={p.days} onAction={p.onExpandRoute} />
+                    <RouteCompareRow key={x.id} routePair={x} days={p.days} onAction={p.onExpandRoute}/>
                 );
             }
         });
 
-        let baseRoute = <RouteCompareRow routePair={p.baseRoutes} days={p.days} onAction={p.onExpandRoute} />;
+        let baseRoute = <RouteCompareRow routePair={p.baseRoutes} days={p.days} onAction={p.onExpandRoute}/>;
         if (p.expandedRouteId === p.baseRoutes.id) {
-            baseRoute = <ExpandedRouteCompareRow routePair={p.baseRoutes} days={p.days} onAction={p.onCollapseRoute} />;
+            baseRoute = (
+                <ExpandedRouteCompareRow
+                    routePair={p.baseRoutes}
+                    days={p.days}
+                    onAction={p.onCollapseRoute}
+                    deletable={false}
+                    onClickDelete={(pairId: string) => p.onDeleteRoute(pairId)}
+                />
+            );
         }
 
         return (
@@ -62,7 +78,8 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAct
     );
 }
 
-function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAction: () => void}) {
+function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, deletable: boolean, days: number,
+                                     onAction: () => void, onClickDelete: (pairId: string) => void}) {
     return (
         <div className="expanded-comparer-row">
             <div className="row" onClick={() => p.onAction()}>
@@ -93,6 +110,17 @@ function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, days: numbe
                     <div className="value">{(p.routePair.routeFromDestination.totalFare * p.days).toFixed(2)}</div>
                     <div className="identifier">SGD</div>
                 </div>
+            </div>
+            <div className="row button-row">
+                <div className="col-xs-4">
+                    <a className="change-route-button">Change Route</a>
+                </div>
+                {p.deletable &&
+                    <div className="col-xs-4">
+                        <a className="delete-button" onClick={() => p.onClickDelete(p.routePair.id)}>Delete</a>
+                    </div>
+                }
+                <div className="col-xs-4" />
             </div>
         </div>
     );
