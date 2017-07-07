@@ -14,13 +14,30 @@
     margin-top: -10px;
 }
 
-.route-compare-menu .comparer-row {
+.route-compare-menu .comparer-row,
+.route-compare-menu .expanded-comparer-row {
     border-bottom: 1px solid #e5e5e5;
     padding-bottom: 6px;
     padding-top: 6px;
 }
 
-.route-compare-menu .comparer-row .col-xs-8 {
+.route-compare-menu .expanded-comparer-row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.route-compare-menu .expanded-comparer-row .col-xs-12 {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.route-compare-menu .expanded-comparer-row .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.route-compare-menu .comparer-row .col-xs-8,
+.route-compare-menu .expanded-comparer-row .col-xs-8 {
     overflow: hidden;
     padding-top: 5px;
 }

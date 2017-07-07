@@ -2,7 +2,7 @@ import * as constants from '../constants/index';
 import {
     AddAdditionalRoutesAction,
     ChangePageAction, ChooseAdditionalAddressAction,
-    ConfirmRouteAction,
+    ConfirmRouteAction, ExpandRouteAction,
     FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
     SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction
 } from '../actions/index';
@@ -144,6 +144,15 @@ export function additionalRoutes(state: DirectionsRoutePair[] = [],
     }
 }
 
+export function expandedRouteId(state: string = '', action: ExpandRouteAction): string {
+    switch (action.type) {
+        case constants.EXPAND_ROUTE:
+            return action.routeId;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -156,5 +165,6 @@ export const rootReducer = combineReducers<StoreState>({
     currentPage,
     days,
     additionalAddress,
-    additionalRoutes
+    additionalRoutes,
+    expandedRouteId
 });

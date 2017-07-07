@@ -18,4 +18,5 @@ export interface StoreState {
     days: number;
     additionalAddress: AutocompletePrediction | null;
     additionalRoutes: DirectionsRoutePair[];
+    expandedRouteId: string;
 }

@@ -200,3 +200,20 @@ export function removeAdditionalRoutes(pairId: string): RemoveAdditionalRoutesAc
         pairId
     };
 }
+
+export interface ExpandRouteAction {
+    type: string;
+    routeId: string;
+}
+export function expandRoute(routeId: string): ExpandRouteAction {
+    return {
+        type: constants.EXPAND_ROUTE,
+        routeId
+    };
+}
+export function collapseRoute(): ExpandRouteAction {
+    return {
+        type: constants.EXPAND_ROUTE,
+        routeId: ''
+    };
+}
