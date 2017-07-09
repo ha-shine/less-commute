@@ -1,6 +1,6 @@
 .route-select-modal-content .close-button {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 13px;
     font-size: 20px;
     color: #888;

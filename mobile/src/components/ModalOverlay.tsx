@@ -13,6 +13,8 @@ export default function ModalOverlay(props: Props) {
     switch (props.currentModal) {
         case CurrentModal.BaseRoute:
         case CurrentModal.NewRouteSecondModal:
+        case CurrentModal.ChangeRouteModal:
+        case CurrentModal.ChangeBaseRouteModal:
             return <RouteSelectModalDialog />;
         case CurrentModal.NewRouteModal:
             return <NewRouteModalDialog />;

@@ -19,6 +19,7 @@ export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SET_DAYS = 'SET_DAYS';
 export const CHOOSE_ADDITIONAL_ADDRESS = 'CHOOSE_ADDITIONAL_ADDRESS';
 export const ADD_ADDITIONAL_ROUTES = 'ADD_ADDITIONAL_ROUTES';
+export const CHANGE_ADDITIONAL_ROUTES = 'CHANGE_ADDITIONAL_ROUTES';
 export const REMOVE_ADDITIONAL_ROUTES = 'REMOVE_ADDITIONAL_ROUTES';
 export const EXPAND_ROUTE = 'EXPAND_ROUTE';
 
@@ -29,6 +30,7 @@ export enum CurrentModal {
     NewRouteModal,
     NewRouteSecondModal,
     ChangeRouteModal,
+    ChangeBaseRouteModal,
     RouteDeleteConfirmModal,
     None
 }

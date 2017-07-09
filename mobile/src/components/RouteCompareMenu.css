@@ -1,7 +1,7 @@
 .route-compare-menu .duration,
 .route-compare-menu .cost {
     font-family: Montserrat, serif;
-    text-align: center;
+    text-align: left;
 }
 
 .route-compare-menu .duration .value,

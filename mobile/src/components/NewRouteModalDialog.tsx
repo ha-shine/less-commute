@@ -4,17 +4,12 @@ import ModalOverlayContainer from './ModalOverlayContainer';
 import GooglePlaceAutocomplete from './GooglePlaceAutocomplete';
 import './NewRouteModalDialog.css';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
-import {ChooseAdditionalAddressAction, FetchGoogleRouteAction, ShowModalAction} from '../actions/index';
-import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
-import DirectionsResult = google.maps.DirectionsResult;
-import {getGoogleDirection} from '../services/index';
+import {ChooseAdditionalAddressAction, ShowModalAction} from '../actions/index';
 
 interface Props {
     workAddress: AutocompletePrediction;
     onHideModal: () => ShowModalAction;
     onShowNextStage: () => ShowModalAction;
-    fetchRoutesFromSource: (routes: IdentifiableDirectionsRoute[]) => FetchGoogleRouteAction;
-    fetchRoutesFromDestination: (routes: IdentifiableDirectionsRoute[]) => FetchGoogleRouteAction;
     chooseAdditionalAddress: (a: AutocompletePrediction) => ChooseAdditionalAddressAction;
     clearAdditionalAddress: () => ChooseAdditionalAddressAction;
 }
@@ -44,32 +39,9 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
     }
     onClickNext= () => {
         if (this.state.selectedAddress !== null) {
-            this.fetchRoutes();
             this.props.chooseAdditionalAddress(this.state.selectedAddress);
             this.props.onShowNextStage();
         }
-    }
-    fetchRoutes = () => {
-        const source = this.state.selectedAddress as AutocompletePrediction;
-        const dstn = this.props.workAddress;
-        let departureTimeFromSource = new Date();
-        let departureTimeFromDestination = new Date();
-        departureTimeFromSource.setHours(8);
-        departureTimeFromDestination.setHours(18);
-        const callbackFromSource = (result: DirectionsResult) => {
-            const directionsRoutes = result.routes.map((route) => {
-                return new IdentifiableDirectionsRoute(route);
-            });
-            this.props.fetchRoutesFromSource(directionsRoutes);
-        };
-        const callbackFromDestination = (result: DirectionsResult) => {
-            const directionsRoutes = result.routes.map((route) => {
-                return new IdentifiableDirectionsRoute(route);
-            });
-            this.props.fetchRoutesFromDestination(directionsRoutes);
-        };
-        getGoogleDirection(source, dstn, departureTimeFromSource, callbackFromSource);
-        getGoogleDirection(dstn, source, departureTimeFromDestination, callbackFromDestination);
     }
     render () {
         return (

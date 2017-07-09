@@ -12,6 +12,8 @@ interface Props {
     onExpandRoute: (routeId: string) => void;
     onCollapseRoute: () => void;
     onDeleteRoute: (pairId: string) => void;
+    onChangeRoute: () => void;
+    onChangeBaseRoute: () => void;
 }
 export function RouteCompareMenu(p: Props) {
     if (p.baseRoutes !== null) {
@@ -25,6 +27,7 @@ export function RouteCompareMenu(p: Props) {
                         onAction={p.onCollapseRoute}
                         deletable={true}
                         onClickDelete={(pairId: string) => p.onDeleteRoute(pairId)}
+                        onClickChangeRoute={p.onChangeRoute}
                     />
                 );
             } else {
@@ -43,6 +46,7 @@ export function RouteCompareMenu(p: Props) {
                     onAction={p.onCollapseRoute}
                     deletable={false}
                     onClickDelete={(pairId: string) => p.onDeleteRoute(pairId)}
+                    onClickChangeRoute={p.onChangeBaseRoute}
                 />
             );
         }
@@ -79,7 +83,8 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAct
 }
 
 function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, deletable: boolean, days: number,
-                                     onAction: () => void, onClickDelete: (pairId: string) => void}) {
+                                     onAction: () => void, onClickDelete: (pairId: string) => void,
+                                     onClickChangeRoute: () => void}) {
     return (
         <div className="expanded-comparer-row">
             <div className="row" onClick={() => p.onAction()}>
@@ -113,7 +118,7 @@ function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, deletable: 
             </div>
             <div className="row button-row">
                 <div className="col-xs-4">
-                    <a className="change-route-button">Change Route</a>
+                    <a className="change-route-button" onClick={() => p.onClickChangeRoute()}>Change Route</a>
                 </div>
                 {p.deletable &&
                     <div className="col-xs-4">

@@ -190,6 +190,20 @@ export function addAdditionalRoutes(pair: DirectionsRoutePair): AddAdditionalRou
     };
 }
 
+export interface ChangeAdditionalRoutesAction {
+    type: string;
+    existingPairId: string;
+    pair: DirectionsRoutePair;
+}
+export function changeAdditionalRoutes(existingPairId: string,
+                                       pair: DirectionsRoutePair): ChangeAdditionalRoutesAction {
+    return {
+        type: constants.CHANGE_ADDITIONAL_ROUTES,
+        existingPairId,
+        pair
+    };
+}
+
 export interface RemoveAdditionalRoutesAction {
     type: string;
     pairId: string;

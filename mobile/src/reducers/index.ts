@@ -1,6 +1,6 @@
 import * as constants from '../constants/index';
 import {
-    AddAdditionalRoutesAction,
+    AddAdditionalRoutesAction, ChangeAdditionalRoutesAction,
     ChangePageAction, ChooseAdditionalAddressAction,
     ConfirmRouteAction, ExpandRouteAction,
     FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
@@ -129,12 +129,21 @@ export function additionalAddress(state: AutocompletePrediction | null = null,
 }
 
 export function additionalRoutes(state: DirectionsRoutePair[] = [],
-                                 action: AddAdditionalRoutesAction | RemoveAdditionalRoutesAction) {
+                                 action: AddAdditionalRoutesAction |
+                                     RemoveAdditionalRoutesAction |
+                                     ChangeAdditionalRoutesAction) {
     let additionalRoutes = state.slice();
     switch (action.type) {
         case constants.ADD_ADDITIONAL_ROUTES:
             const addAction = action as AddAdditionalRoutesAction;
             additionalRoutes.push(addAction.pair);
+            return additionalRoutes;
+        case constants.CHANGE_ADDITIONAL_ROUTES:
+            const changeAction = action as ChangeAdditionalRoutesAction;
+            const index = additionalRoutes.findIndex(x => x.id === changeAction.existingPairId);
+            if (index !== -1) {
+                additionalRoutes[index] = changeAction.pair;
+            }
             return additionalRoutes;
         case constants.REMOVE_ADDITIONAL_ROUTES:
             const removeAction = action as RemoveAdditionalRoutesAction;
