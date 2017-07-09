@@ -1,0 +1,20 @@
+.topbar .navbar-details {
+    position: relative;
+}
+
+.topbar .navbar-details .topbar-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    z-index: 10;
+}
+
+.topbar .navbar-details .topbar-dropdown li {
+    list-style: none;
+    font-weight: normal;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #dddddd;
+    margin-bottom: -1px;
+    padding: 5px 16px;
+}

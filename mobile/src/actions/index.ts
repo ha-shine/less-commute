@@ -231,3 +231,22 @@ export function collapseRoute(): ExpandRouteAction {
         routeId: ''
     };
 }
+
+export interface ShowTopbarDropdownMenuAction {
+    type: string;
+}
+export function showTopbarDropdownMenu(): ShowTopbarDropdownMenuAction {
+    return {
+        type: constants.SHOW_TOPBAR_DROPDOWN_MENU
+    };
+}
+export interface HideTopbarDropdownMenuAction {
+    type: string;
+}
+export function hideTopbarDropdownMenu(): HideTopbarDropdownMenuAction {
+    return {
+        type: constants.HIDE_TOPBAR_DROPDOWN_MENU
+    };
+}
+
+export type TopbarDropdownMenuAction = ShowTopbarDropdownMenuAction | HideTopbarDropdownMenuAction;

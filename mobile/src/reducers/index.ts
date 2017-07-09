@@ -4,7 +4,7 @@ import {
     ChangePageAction, ChooseAdditionalAddressAction,
     ConfirmRouteAction, ExpandRouteAction,
     FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
-    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction
+    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction, TopbarDropdownMenuAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
@@ -162,6 +162,17 @@ export function expandedRouteId(state: string = '', action: ExpandRouteAction): 
     }
 }
 
+export function showTopbarDropdownMenu(state: boolean = false, action: TopbarDropdownMenuAction): boolean {
+    switch (action.type) {
+        case constants.SHOW_TOPBAR_DROPDOWN_MENU:
+            return true;
+        case constants.HIDE_TOPBAR_DROPDOWN_MENU:
+            return false;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -175,5 +186,6 @@ export const rootReducer = combineReducers<StoreState>({
     days,
     additionalAddress,
     additionalRoutes,
-    expandedRouteId
+    expandedRouteId,
+    showTopbarDropdownMenu
 });
