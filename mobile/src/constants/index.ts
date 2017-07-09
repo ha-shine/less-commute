@@ -28,6 +28,8 @@ export enum CurrentModal {
     BaseRoute,
     NewRouteModal,
     NewRouteSecondModal,
+    ChangeRouteModal,
+    RouteDeleteConfirmModal,
     None
 }
 export enum CurrentPage {

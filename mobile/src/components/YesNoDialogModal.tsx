@@ -5,7 +5,6 @@ import './YesNoDialogModal.css';
 
 interface Props {
     header: string;
-    description: string;
     onClickYes: () => void;
     onClickNo: () => void;
 }
@@ -22,7 +21,7 @@ export default class YesNoDialogModal extends React.Component<Props, {}> {
                         <div className="modal-body">
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <p>{this.props.description}</p>
+                                    {this.props.children}
                                 </div>
                             </div>
                         </div>
