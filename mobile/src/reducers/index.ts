@@ -12,6 +12,7 @@ import {StoreState} from '../types/index';
 import {CurrentModal, CurrentPage} from '../constants/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
+import { ClearAdditionalRoutesAction } from '../actions/index';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -94,6 +95,8 @@ export function baseRoutes(state: DirectionsRoutePair | null = null,
     switch (action.type) {
         case constants.CONFIRM_BASE_ROUTES:
             return action.routes;
+        case constants.CLEAR_BASE_ROUTES:
+            return action.routes;
         default:
             return state;
     }
@@ -131,7 +134,8 @@ export function additionalAddress(state: AutocompletePrediction | null = null,
 export function additionalRoutes(state: DirectionsRoutePair[] = [],
                                  action: AddAdditionalRoutesAction |
                                      RemoveAdditionalRoutesAction |
-                                     ChangeAdditionalRoutesAction) {
+                                     ChangeAdditionalRoutesAction |
+                                     ClearAdditionalRoutesAction) {
     let additionalRoutes = state.slice();
     switch (action.type) {
         case constants.ADD_ADDITIONAL_ROUTES:
@@ -148,6 +152,8 @@ export function additionalRoutes(state: DirectionsRoutePair[] = [],
         case constants.REMOVE_ADDITIONAL_ROUTES:
             const removeAction = action as RemoveAdditionalRoutesAction;
             return additionalRoutes.filter((x) => x.id !== removeAction.pairId);
+        case constants.CLEAR_ADDITIONAL_ROUTES:
+            return [];
         default:
             return state;
     }

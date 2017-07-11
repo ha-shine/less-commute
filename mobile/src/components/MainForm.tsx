@@ -23,6 +23,7 @@ interface Props {
     onRemoveWorkAddress: () => RemoveHomeAddressAction;
     onShowModal: (s: constants.CurrentModal) => ShowModalAction;
     setDays: (days: number) => SetDaysAction;
+    onClickReset: () => ShowModalAction;
 }
 export default class MainForm extends React.Component<Props, {}> {
     private daysInput: HTMLInputElement;
@@ -56,7 +57,7 @@ export default class MainForm extends React.Component<Props, {}> {
                         </button>
                     </div>
                     <div className="col-xs-6">
-                        <button className="btn btn-danger btn-block">
+                        <button className="btn btn-danger btn-block" onClick={this.props.onClickReset}>
                             Reset <span className="ion-refresh"/>
                         </button>
                     </div>

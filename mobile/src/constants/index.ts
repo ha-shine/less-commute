@@ -21,6 +21,7 @@ export const CHOOSE_ADDITIONAL_ADDRESS = 'CHOOSE_ADDITIONAL_ADDRESS';
 export const ADD_ADDITIONAL_ROUTES = 'ADD_ADDITIONAL_ROUTES';
 export const CHANGE_ADDITIONAL_ROUTES = 'CHANGE_ADDITIONAL_ROUTES';
 export const REMOVE_ADDITIONAL_ROUTES = 'REMOVE_ADDITIONAL_ROUTES';
+export const CLEAR_ADDITIONAL_ROUTES = 'CLEAR_ADDITIONAL_ROUTES';
 export const EXPAND_ROUTE = 'EXPAND_ROUTE';
 export const SHOW_TOPBAR_DROPDOWN_MENU = 'SHOW_TOPBAR_DROPDOWN_MENU';
 export const HIDE_TOPBAR_DROPDOWN_MENU = 'HIDE_TOPBAR_DROPDOWN_MENU';
@@ -34,6 +35,7 @@ export enum CurrentModal {
     ChangeRouteModal,
     ChangeBaseRouteModal,
     RouteDeleteConfirmModal,
+    ResetConfirmModal,
     None
 }
 export enum CurrentPage {

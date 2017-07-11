@@ -7,6 +7,7 @@ import {
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import MainForm from '../components/MainForm';
 import * as constants from '../constants/index';
+import { CurrentModal } from '../constants/index';
 /**
  * Created by Shine on 6/29/2017.
  */
@@ -24,7 +25,8 @@ function mapDispatchToProps(dispatch: Dispatch<object>) {
         onSelectWorkAddress: (a: AutocompletePrediction) => dispatch(selectWorkAddress(a)),
         onRemoveWorkAddress: () => dispatch(removeWorkAddress()),
         onShowModal: (s: constants.CurrentModal) => dispatch(showModal(s)),
-        setDays: (days: number) => dispatch(setDays(days))
+        setDays: (days: number) => dispatch(setDays(days)),
+        onClickReset: () => dispatch(showModal(CurrentModal.ResetConfirmModal))
     };
 }
 

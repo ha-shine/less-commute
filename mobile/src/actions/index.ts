@@ -215,6 +215,15 @@ export function removeAdditionalRoutes(pairId: string): RemoveAdditionalRoutesAc
     };
 }
 
+export interface ClearAdditionalRoutesAction {
+    type: string;
+}
+export function clearAdditionalRoutes(): ClearAdditionalRoutesAction {
+    return {
+        type: constants.CLEAR_ADDITIONAL_ROUTES
+    };
+}
+
 export interface ExpandRouteAction {
     type: string;
     routeId: string;
