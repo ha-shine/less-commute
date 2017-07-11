@@ -18,3 +18,7 @@
     margin-bottom: -1px;
     padding: 5px 16px;
 }
+
+.topbar .navbar-details li {
+    width: 150px;
+}
