@@ -13,7 +13,8 @@ import * as constants from '../constants/index';
 function mapStateToProps(s: StoreState) {
     return {
         selectedHomeAddress: s.selectedHomeAddress,
-        selectedWorkAddress: s.selectedWorkAddress
+        selectedWorkAddress: s.selectedWorkAddress,
+        baseRoutes: s.baseRoutes
     };
 }
 function mapDispatchToProps(dispatch: Dispatch<object>) {

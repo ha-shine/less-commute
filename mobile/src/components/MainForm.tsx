@@ -7,6 +7,7 @@ import './MainForm.css';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants/index';
 import {CurrentModal} from '../constants/index';
+import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import {
     RemoveHomeAddressAction, SelectHomeAddressAction,
     SelectWorkAddressAction, SetDaysAction, ShowModalAction
@@ -15,6 +16,7 @@ import {
 interface Props {
     selectedWorkAddress: AutocompletePrediction | null;
     selectedHomeAddress: AutocompletePrediction | null;
+    baseRoutes: DirectionsRoutePair | null;
     onSelectHomeAddress: (address: AutocompletePrediction) => SelectHomeAddressAction;
     onSelectWorkAddress: (address: AutocompletePrediction) => SelectWorkAddressAction;
     onRemoveHomeAddress: () => RemoveHomeAddressAction;
@@ -47,6 +49,7 @@ export default class MainForm extends React.Component<Props, {}> {
                         onSelectAddress={this.props.onSelectWorkAddress}
                         onRemoveAddress={this.props.onRemoveWorkAddress}
                         existingAddress={this.props.selectedWorkAddress}
+                        disabled={this.props.baseRoutes !== null}
                     />
                 </div>
                 <div className="form-group">
