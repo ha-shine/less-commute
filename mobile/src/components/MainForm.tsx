@@ -33,6 +33,37 @@ export default class MainForm extends React.Component<Props, {}> {
     render() {
         const shouldDisableCalculateButton = this.props.selectedHomeAddress == null ||
             this.props.selectedWorkAddress == null;
+
+        let buttonRow = (
+            <div className="row">
+                <div className="col-xs-12">
+                    <button
+                        className="btn btn-default btn-block"
+                        disabled={shouldDisableCalculateButton}
+                        onClick={this.onClickCalculate}
+                    >
+                        Calculate <span className="ion-navigate"/>
+                    </button>
+                </div>
+            </div>
+        );
+        if (this.props.baseRoutes !== null) {
+            buttonRow = (
+                <div className="row">
+                    <div className="col-xs-6">
+                        <button className="btn btn-primary btn-block">
+                            Save Changes <span className="ion-checkmark"/>
+                        </button>
+                    </div>
+                    <div className="col-xs-6">
+                        <button className="btn btn-danger btn-block">
+                            Reset <span className="ion-refresh"/>
+                        </button>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div className="form main-form">
                 <div className="form-group">
@@ -68,13 +99,7 @@ export default class MainForm extends React.Component<Props, {}> {
                         </div>
                     </div>
                 </div>
-                <button
-                    className="btn btn-default btn-block"
-                    disabled={shouldDisableCalculateButton}
-                    onClick={this.onClickCalculate}
-                >
-                    Calculate <span className="ion-navigate"/>
-                </button>
+                {buttonRow}
             </div>
         );
     }
