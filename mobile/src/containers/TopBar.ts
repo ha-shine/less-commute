@@ -1,5 +1,4 @@
-import {connect, Dispatch} from 'react-redux';
-import {hideTopbarDropdownMenu, showTopbarDropdownMenu} from '../actions/index';
+import {connect} from 'react-redux';
 import TopBar from '../components/TopBar';
 import {StoreState} from '../types/index';
 /**
@@ -10,11 +9,5 @@ function mapStateToProps(s: StoreState) {
         showTopbarDropdownMenu: s.showTopbarDropdownMenu
     };
 }
-function mapDispatchToProps(d: Dispatch<object>) {
-    return {
-        onShowTopbarDropdownMenu: () => { d(showTopbarDropdownMenu()); },
-        onHideTopbarDropdownMenu: () => { d(hideTopbarDropdownMenu()); }
-    };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default connect(mapStateToProps, {})(TopBar);

@@ -7,24 +7,41 @@ interface Props {
     currentModal: constants.CurrentModal;
     showTopbarDropdownMenu: boolean;
     onHideMenu: () => void;
+    onShowMenu: () => void;
 }
 class TopBarDropdownMenu extends React.Component<Props, {}> {
+    onClickDetailsButton() {
+        if (this.props.showTopbarDropdownMenu) {
+            this.props.onHideMenu();
+        } else {
+            this.props.onShowMenu();
+        }
+    }
+
     handleClickOutside() {
         this.props.onHideMenu();
     }
 
     render() {
+        let list = null;
         if (this.props.showTopbarDropdownMenu) {
-            return (
+            list = (
                 <ul className="topbar-dropdown">
                     <li className="menu-items">Hello</li>
                     <li className="menu-items">Hello</li>
                     <li className="menu-items">Hello</li>
                 </ul>
             );
-        } else {
-            return null;
         }
+        return (
+            <a
+                className="navbar-brand navbar-details pull-right"
+                onClick={() => this.onClickDetailsButton()}
+            >
+                <span className="ion-android-more-vertical" />
+                {list}
+            </a>
+        );
     }
 }
 
