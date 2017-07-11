@@ -38,6 +38,7 @@ export default class MainForm extends React.Component<Props, {}> {
                     <GooglePlaceAutocomplete
                         onSelectAddress={this.props.onSelectHomeAddress}
                         onRemoveAddress={this.props.onRemoveHomeAddress}
+                        existingAddress={this.props.selectedHomeAddress}
                     />
                 </div>
                 <div className="form-group">
@@ -45,6 +46,7 @@ export default class MainForm extends React.Component<Props, {}> {
                     <GooglePlaceAutocomplete
                         onSelectAddress={this.props.onSelectWorkAddress}
                         onRemoveAddress={this.props.onRemoveWorkAddress}
+                        existingAddress={this.props.selectedWorkAddress}
                     />
                 </div>
                 <div className="form-group">

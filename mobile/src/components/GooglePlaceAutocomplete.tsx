@@ -15,6 +15,7 @@ interface State {
 
 interface Props {
     disabled: boolean;
+    existingAddress: AutocompletePrediction | null;
     onSelectAddress: (address: AutocompletePrediction) => void;
     onRemoveAddress: () => void;
 }
@@ -85,6 +86,13 @@ class GooglePlaceAutocomplete extends React.Component<Props, State> {
 
     handleClickOutside() {
         this.removePredictions();
+    }
+
+    componentDidMount() {
+        const value = this.props.existingAddress === null ? '' : this.props.existingAddress.description;
+        this.setState({
+            textboxValue: value
+        });
     }
 
     render() {
