@@ -258,4 +258,21 @@ export function hideTopbarDropdownMenu(): HideTopbarDropdownMenuAction {
     };
 }
 
+export interface TemporaryHomeAddressAction {
+    type: string;
+    address: AutocompletePrediction | null;
+}
+export function setTemporaryHomeAddress(address: AutocompletePrediction): TemporaryHomeAddressAction {
+    return {
+        type: constants.SET_TEMPORARY_HOME_ADDRESS,
+        address
+    };
+}
+export function removeTemporaryHomeAddress(): TemporaryHomeAddressAction {
+    return {
+        type: constants.SET_TEMPORARY_HOME_ADDRESS,
+        address: null
+    };
+}
+
 export type TopbarDropdownMenuAction = ShowTopbarDropdownMenuAction | HideTopbarDropdownMenuAction;

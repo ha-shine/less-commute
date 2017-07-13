@@ -4,7 +4,8 @@ import {
     ChangePageAction, ChooseAdditionalAddressAction,
     ConfirmRouteAction, ExpandRouteAction,
     FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
-    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction, TopbarDropdownMenuAction
+    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction, TemporaryHomeAddressAction,
+    TopbarDropdownMenuAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
@@ -179,6 +180,16 @@ export function showTopbarDropdownMenu(state: boolean = false, action: TopbarDro
     }
 }
 
+export function temporaryHomeAddress(state: AutocompletePrediction | null = null,
+                                     action: TemporaryHomeAddressAction): AutocompletePrediction | null {
+    switch (action.type) {
+        case constants.SET_TEMPORARY_HOME_ADDRESS:
+            return action.address;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedHomeAddress,
     selectedWorkAddress,
@@ -193,5 +204,6 @@ export const rootReducer = combineReducers<StoreState>({
     additionalAddress,
     additionalRoutes,
     expandedRouteId,
-    showTopbarDropdownMenu
+    showTopbarDropdownMenu,
+    temporaryHomeAddress
 });

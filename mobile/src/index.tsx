@@ -23,7 +23,8 @@ const initialStore: StoreState = {
     additionalAddress: null,
     additionalRoutes: [],
     expandedRouteId: '',
-    showTopbarDropdownMenu: false
+    showTopbarDropdownMenu: false,
+    temporaryHomeAddress: null
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

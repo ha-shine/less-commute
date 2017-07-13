@@ -20,4 +20,5 @@ export interface StoreState {
     additionalRoutes: DirectionsRoutePair[];
     expandedRouteId: string;
     showTopbarDropdownMenu: boolean;
+    temporaryHomeAddress: AutocompletePrediction | null;
 }

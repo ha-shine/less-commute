@@ -25,6 +25,7 @@ export const CLEAR_ADDITIONAL_ROUTES = 'CLEAR_ADDITIONAL_ROUTES';
 export const EXPAND_ROUTE = 'EXPAND_ROUTE';
 export const SHOW_TOPBAR_DROPDOWN_MENU = 'SHOW_TOPBAR_DROPDOWN_MENU';
 export const HIDE_TOPBAR_DROPDOWN_MENU = 'HIDE_TOPBAR_DROPDOWN_MENU';
+export const SET_TEMPORARY_HOME_ADDRESS = 'SET_TEMPORARY_HOME_ADDRESS';
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
@@ -36,6 +37,7 @@ export enum CurrentModal {
     ChangeBaseRouteModal,
     RouteDeleteConfirmModal,
     ResetConfirmModal,
+    ChangeHomeAddressModal,
     None
 }
 export enum CurrentPage {

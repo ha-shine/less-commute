@@ -23,6 +23,8 @@ export default function ModalOverlay(props: Props) {
             return <RouteDeleteConfirmModal />;
         case CurrentModal.ResetConfirmModal:
             return <ResetConfirmModal />;
+        case CurrentModal.ChangeHomeAddressModal:
+            return <RouteSelectModalDialog />;
         default:
             return null;
     }

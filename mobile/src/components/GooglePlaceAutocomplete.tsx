@@ -89,7 +89,8 @@ class GooglePlaceAutocomplete extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        const value = this.props.existingAddress === null ? '' : this.props.existingAddress.description;
+        const value = this.props.existingAddress === null ||
+                      this.props.existingAddress === undefined ? '' : this.props.existingAddress.description;
         this.setState({
             textboxValue: value
         });

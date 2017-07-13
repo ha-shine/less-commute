@@ -6,7 +6,7 @@ import {
     changePage, clearAdditionalAddress, clearRouteFromDestination, clearRouteFromSource,
     clearSelectedRoutes,
     confirmBaseRoute, fetchRouteFromDestination, fetchRouteFromSource,
-    hideModal, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
+    hideModal, selectHomeAddress, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
 import {CurrentModal, CurrentPage} from '../constants/index';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
@@ -23,6 +23,9 @@ function mapStateToProps(s: StoreState) {
             break;
         case CurrentModal.ChangeRouteModal:
             source = (s.additionalRoutes.find(x => x.id === s.expandedRouteId) as DirectionsRoutePair).address;
+            break;
+        case CurrentModal.ChangeHomeAddressModal:
+            source = s.temporaryHomeAddress;
             break;
         default:
             source = s.selectedHomeAddress;
@@ -65,6 +68,9 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
         },
         onReceiveRouteFromDestination: (routes: IdentifiableDirectionsRoute[]) => {
             d(fetchRouteFromDestination(routes));
+        },
+        onSelectHomeAddress: (address: AutocompletePrediction) => {
+            d(selectHomeAddress(address));
         }
     };
 }

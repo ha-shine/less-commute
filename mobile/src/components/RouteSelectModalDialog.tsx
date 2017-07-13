@@ -29,6 +29,7 @@ interface Props {
     onConfirmBaseRoutes: (routes: DirectionsRoutePair) => void;
     onConfirmAdditionalRoutes: (routes: DirectionsRoutePair) => void;
     onConfirmChangeRoutes: (existingPairId: string, routes: DirectionsRoutePair) => void;
+    onSelectHomeAddress: (address: AutocompletePrediction) => void;
 }
 export default class RouteSelectModalDialog extends React.Component<Props, {}> {
     componentDidMount() {
@@ -76,6 +77,10 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
                     break;
                 case CurrentModal.NewRouteSecondModal:
                     p.onConfirmAdditionalRoutes(routePair);
+                    break;
+                case CurrentModal.ChangeHomeAddressModal:
+                    p.onConfirmBaseRoutes(routePair);
+                    p.onSelectHomeAddress(p.source);
                     break;
                 default:
                     p.onConfirmChangeRoutes(p.existingPairId, routePair);
