@@ -1,8 +1,7 @@
 import {connect, Dispatch} from 'react-redux';
 import ResetConfirmModal from '../components/ResetConfirmModal';
 import { 
-    hideModal, removeWorkAddress, 
-    removeHomeAddress, clearAdditionalRoutes, 
+    hideModal, clearAdditionalRoutes,
     clearBaseRoute 
 } from '../actions/index';
 /**
@@ -11,8 +10,6 @@ import {
 function mapDispatchToProps(d: Dispatch<object>) {
     return {
         onConfirm: () => {
-            d(removeWorkAddress());
-            d(removeHomeAddress());
             d(clearAdditionalRoutes());
             d(clearBaseRoute());
         },

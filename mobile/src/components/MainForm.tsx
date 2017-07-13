@@ -62,7 +62,7 @@ export default class MainForm extends React.Component<Props, {}> {
                         </button>
                     </div>
                 </div>
-            )
+            );
         }
 
         return (
