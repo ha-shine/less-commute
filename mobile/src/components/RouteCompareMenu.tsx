@@ -2,6 +2,7 @@ import * as React from 'react';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import './RouteCompareMenu.css';
 import DirectionsStepsRenderer from './DirectionsStepsRenderer';
+import {SyntheticEvent} from 'react';
 
 interface Props {
     days: number;
@@ -12,10 +13,18 @@ interface Props {
     onCollapseRoute: () => void;
     onDeleteRoute: (pairId: string) => void;
     onChangeRoute: () => void;
+    setDays: (days: number) => void;
 }
 export function RouteCompareMenu(p: Props) {
+    let additionalRoutesDisplay = null;
+    const daysInputChange = (event: SyntheticEvent<HTMLInputElement>) => {
+        const days = Number(event.currentTarget.value);
+        if (!isNaN(days)) {
+            p.setDays(days);
+        }
+    };
     if (p.additionalRoutes.length > 0) {
-        const additionalRoutesDisplay = p.additionalRoutes.map((x) => {
+        additionalRoutesDisplay = p.additionalRoutes.map((x) => {
             if (x.id === p.expandedRouteId) {
                 return (
                     <ExpandedRouteCompareRow
@@ -34,16 +43,29 @@ export function RouteCompareMenu(p: Props) {
                 );
             }
         });
-        return (
-            <div className="route-compare-menu">
-                {additionalRoutesDisplay}
-                <div className="add-route-button" onClick={p.onClickAddRouteBtn}>
-                    +
+    } else {
+        additionalRoutesDisplay = (
+            <div className="row empty-row">
+                <div className="col-xs-12 text-center">
+                    <h6>Add a new address here by tapping the plus sign below!</h6>
                 </div>
             </div>
         );
     }
-    return null;
+    return (
+    <div className="route-compare-menu">
+        <div className="row input-row">
+            <div className="col-xs-12 text-right">
+                <label>Days travel per month</label>
+                <input type="text" className="form-control days-input" value={p.days} onChange={daysInputChange}/>
+            </div>
+        </div>
+        {additionalRoutesDisplay}
+        <div className="add-route-button" onClick={p.onClickAddRouteBtn}>
+            +
+        </div>
+    </div>
+    );
 }
 
 function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAction: (routeId: string) => void}) {

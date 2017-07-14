@@ -67,3 +67,28 @@
     line-height: 50px;
     font-size: 30px;
 }
+
+.route-compare-menu .days-input {
+    display: inline;
+    min-width: 40px;
+    max-width: 60px;
+    margin-left: 20px;
+    text-align: center;
+    height: auto;
+    border: 1px solid #e5e5e5;
+}
+
+.route-compare-menu .empty-row {
+    border-top: 1px solid #e5e5e5;
+}
+
+.route-compare-menu .empty-row h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.route-compare-menu .input-row {
+    margin-top: 7px;
+    margin-bottom: 4px;
+}
