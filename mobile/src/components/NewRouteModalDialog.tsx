@@ -49,7 +49,7 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
                 <SmallModalDialog>
                     <div className="modal-content new-route-modal">
                         <span className="ion-android-close close-button" onClick={this.onCloseModal}/>
-                        <div className="modal-header">Add New Route</div>
+                        <div className="modal-header"><h5>Add New Address</h5></div>
                         <div className="modal-body">
                             <div className="form-horizontal">
                                 <div className="form-group">
