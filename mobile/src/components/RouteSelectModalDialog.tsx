@@ -10,6 +10,7 @@ import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants/index';
 import DirectionsResult = google.maps.DirectionsResult;
 import {getGoogleDirection} from '../services/index';
+import {CurrentModal} from '../constants/index';
 
 interface Props {
     existingPairId: string;
@@ -69,7 +70,16 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
             const routePair = new DirectionsRoutePair(p.source, routeFromSource as IdentifiableDirectionsRoute,
                                                       routeFromDst as IdentifiableDirectionsRoute);
 
-            p.onConfirmAdditionalRoutes(routePair);
+            switch (p.currentModal) {
+                case CurrentModal.NewRouteSecondModal:
+                    p.onConfirmAdditionalRoutes(routePair);
+                    break;
+                case CurrentModal.ChangeRouteModal:
+                    p.onConfirmChangeRoutes(p.existingPairId, routePair);
+                    break;
+                default:
+                    break;
+            }
             p.onCloseModal();
         };
         return (
