@@ -8,7 +8,6 @@ import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants/index';
-import {CurrentModal} from '../constants/index';
 import DirectionsResult = google.maps.DirectionsResult;
 import {getGoogleDirection} from '../services/index';
 
@@ -26,7 +25,6 @@ interface Props {
     onSelectRouteFromSource: (s: string) => void;
     onSelectRouteFromDestination: (s: string) => void;
     onCloseModal: () => void;
-    onConfirmBaseRoutes: (routes: DirectionsRoutePair) => void;
     onConfirmAdditionalRoutes: (routes: DirectionsRoutePair) => void;
     onConfirmChangeRoutes: (existingPairId: string, routes: DirectionsRoutePair) => void;
     onSelectHomeAddress: (address: AutocompletePrediction) => void;
@@ -70,23 +68,8 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
             const routeFromDst = p.routesFromDestination.find((x) => x.id === p.selectedRouteIdFromDestination);
             const routePair = new DirectionsRoutePair(p.source, routeFromSource as IdentifiableDirectionsRoute,
                                                       routeFromDst as IdentifiableDirectionsRoute);
-            switch (p.currentModal) {
-                case CurrentModal.ChangeBaseRouteModal:
-                case CurrentModal.BaseRoute:
-                    p.onConfirmBaseRoutes(routePair);
-                    break;
-                case CurrentModal.NewRouteSecondModal:
-                    p.onConfirmAdditionalRoutes(routePair);
-                    break;
-                case CurrentModal.ChangeHomeAddressModal:
-                    p.onConfirmBaseRoutes(routePair);
-                    p.onSelectHomeAddress(p.source);
-                    break;
-                default:
-                    p.onConfirmChangeRoutes(p.existingPairId, routePair);
-                    break;
-            }
 
+            p.onConfirmAdditionalRoutes(routePair);
             p.onCloseModal();
         };
         return (

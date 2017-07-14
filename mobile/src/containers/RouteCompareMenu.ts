@@ -8,7 +8,6 @@ import {CurrentModal} from '../constants/index';
  */
 function mapStateToProps(s: StoreState) {
     return {
-        baseRoutes: s.baseRoutes,
         days: s.days,
         additionalRoutes: s.additionalRoutes,
         expandedRouteId: s.expandedRouteId
@@ -21,7 +20,6 @@ function mapDispatchToProps(d: Dispatch<object>) {
         onExpandRoute: (routeId: string) => d(expandRoute(routeId)),
         onCollapseRoute: () => d(collapseRoute()),
         onDeleteRoute: (pairId: string) => d(showModal(CurrentModal.RouteDeleteConfirmModal)),
-        onChangeBaseRoute: () => d(showModal(CurrentModal.ChangeBaseRouteModal)),
         onChangeRoute: () => d(showModal(CurrentModal.ChangeRouteModal))
     };
 }

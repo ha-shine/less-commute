@@ -6,7 +6,6 @@ import {StoreState} from '../types/index';
  */
 function mapStateToProps(s: StoreState) {
     return {
-        showTopbarDropdownMenu: s.showTopbarDropdownMenu
     };
 }
 

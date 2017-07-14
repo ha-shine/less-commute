@@ -1,33 +1,19 @@
 import * as constants from '../constants/index';
 import {
-    AddAdditionalRoutesAction, ChangeAdditionalRoutesAction,
-    ChangePageAction, ChooseAdditionalAddressAction,
-    ConfirmRouteAction, ExpandRouteAction,
-    FetchGoogleRouteAction, RemoveAdditionalRoutesAction,
-    SelectedAddressAction, SelectRouteAction, SetDaysAction, ShowModalAction, TemporaryHomeAddressAction,
-    TopbarDropdownMenuAction
+    AddAdditionalRoutesAction, ChangeAdditionalRoutesAction, ChooseAdditionalAddressAction, ExpandRouteAction,
+    FetchGoogleRouteAction, RemoveAdditionalRoutesAction, SelectedAddressAction, SelectRouteAction, SetDaysAction,
+    ShowModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
-import {CurrentModal, CurrentPage} from '../constants/index';
+import {CurrentModal} from '../constants/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import { ClearAdditionalRoutesAction } from '../actions/index';
 /**
  * Created by Shine on 6/29/2017.
  */
-export function selectedHomeAddress(state: AutocompletePrediction | null = null, action: SelectedAddressAction):
-    AutocompletePrediction | null {
-    switch (action.type) {
-        case constants.SELECT_HOME_ADDRESS:
-        case constants.REMOVE_HOME_ADDRESS:
-            return action.address;
-        default:
-            return state;
-    }
-}
-
 export function selectedWorkAddress(state: AutocompletePrediction | null = null, action: SelectedAddressAction):
     AutocompletePrediction | null {
     switch (action.type) {
@@ -91,28 +77,6 @@ export function selectedRouteIdFromDestination(state: string = '', action: Selec
     }
 }
 
-export function baseRoutes(state: DirectionsRoutePair | null = null,
-                           action: ConfirmRouteAction): DirectionsRoutePair | null {
-    switch (action.type) {
-        case constants.CONFIRM_BASE_ROUTES:
-            return action.routes;
-        case constants.CLEAR_BASE_ROUTES:
-            return action.routes;
-        default:
-            return state;
-    }
-}
-
-export function currentPage(state: constants.CurrentPage = CurrentPage.MainMenu,
-                            action: ChangePageAction): constants.CurrentPage {
-    switch (action.type) {
-        case constants.CHANGE_PAGE:
-            return action.page;
-        default:
-            return state;
-    }
-}
-
 export function days(state: number = 20, action: SetDaysAction): number {
     switch (action.type) {
         case constants.SET_DAYS:
@@ -169,41 +133,15 @@ export function expandedRouteId(state: string = '', action: ExpandRouteAction): 
     }
 }
 
-export function showTopbarDropdownMenu(state: boolean = false, action: TopbarDropdownMenuAction): boolean {
-    switch (action.type) {
-        case constants.SHOW_TOPBAR_DROPDOWN_MENU:
-            return true;
-        case constants.HIDE_TOPBAR_DROPDOWN_MENU:
-            return false;
-        default:
-            return state;
-    }
-}
-
-export function temporaryHomeAddress(state: AutocompletePrediction | null = null,
-                                     action: TemporaryHomeAddressAction): AutocompletePrediction | null {
-    switch (action.type) {
-        case constants.SET_TEMPORARY_HOME_ADDRESS:
-            return action.address;
-        default:
-            return state;
-    }
-}
-
 export const rootReducer = combineReducers<StoreState>({
-    selectedHomeAddress,
     selectedWorkAddress,
     routesFromSource,
     routesFromDestination,
     currentModal,
     selectedRouteIdFromSource,
     selectedRouteIdFromDestination,
-    baseRoutes,
-    currentPage,
     days,
     additionalAddress,
     additionalRoutes,
-    expandedRouteId,
-    showTopbarDropdownMenu,
-    temporaryHomeAddress
+    expandedRouteId
 });

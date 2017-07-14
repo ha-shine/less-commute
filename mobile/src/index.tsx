@@ -7,24 +7,19 @@ import {createStore} from 'redux';
 import {StoreState} from './types/index';
 import {Provider} from 'react-redux';
 import {rootReducer} from './reducers/index';
-import {CurrentModal, CurrentPage} from './constants/index';
+import {CurrentModal} from './constants/index';
 
 const initialStore: StoreState = {
-    selectedHomeAddress: null,
     selectedWorkAddress: null,
     routesFromSource: [],
     routesFromDestination: [],
     selectedRouteIdFromSource: '',
     selectedRouteIdFromDestination: '',
-    currentModal: CurrentModal.None,
-    baseRoutes: null,
-    currentPage: CurrentPage.MainMenu,
+    currentModal: CurrentModal.EntryDialogModal,
     days: 20,
     additionalAddress: null,
     additionalRoutes: [],
-    expandedRouteId: '',
-    showTopbarDropdownMenu: false,
-    temporaryHomeAddress: null
+    expandedRouteId: ''
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

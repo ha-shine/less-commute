@@ -1,0 +1,8 @@
+.dialog-modal {
+    font-family: Montserrat, sans-serif;
+}
+
+.dialog-modal .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}

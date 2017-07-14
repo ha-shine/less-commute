@@ -1,24 +1,6 @@
-.topbar .navbar-details {
-    position: relative;
-}
-
-.topbar .navbar-details .topbar-dropdown {
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    z-index: 10;
-}
-
-.topbar .navbar-details .topbar-dropdown li {
-    list-style: none;
-    font-weight: normal;
-    font-size: 14px;
-    background-color: white;
-    border: 1px solid #dddddd;
-    margin-bottom: -1px;
-    padding: 5px 16px;
-}
-
-.topbar .navbar-details li {
-    width: 150px;
+.topbar .details {
+    font-size: 30px;
+    height: 64px;
+    display: block;
+    padding: 16.5px 15px;
 }

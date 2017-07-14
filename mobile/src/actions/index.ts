@@ -29,30 +29,7 @@ export function removeWorkAddress(): RemoveWorkAddressAction {
     };
 }
 
-export interface SelectHomeAddressAction extends SelectWorkAddressAction {
-    type: string;
-    address: AutocompletePrediction;
-}
-export function selectHomeAddress(address: AutocompletePrediction): SelectHomeAddressAction {
-    return {
-        type: constants.SELECT_HOME_ADDRESS,
-        address: address
-    };
-}
-
-export interface RemoveHomeAddressAction {
-    type: string;
-    address: null;
-}
-export function removeHomeAddress(): RemoveHomeAddressAction {
-    return {
-        type: constants.REMOVE_HOME_ADDRESS,
-        address: null
-    };
-}
-
-export type SelectedAddressAction = SelectHomeAddressAction | SelectWorkAddressAction |
-                                    RemoveHomeAddressAction | RemoveWorkAddressAction;
+export type SelectedAddressAction = SelectWorkAddressAction | RemoveWorkAddressAction;
 
 export interface FetchGoogleRouteAction {
     type: string;
@@ -120,34 +97,6 @@ export function clearSelectedRoutes(): SelectRouteAction {
     return {
         type: constants.CLEAR_SELECTED_ROUTE_IDS,
         routeId: ''
-    };
-}
-
-export interface ConfirmRouteAction {
-    type: string;
-    routes: DirectionsRoutePair | null;
-}
-export function confirmBaseRoute(routes: DirectionsRoutePair): ConfirmRouteAction {
-    return {
-        type: constants.CONFIRM_BASE_ROUTES,
-        routes
-    };
-}
-export function clearBaseRoute(): ConfirmRouteAction {
-    return {
-        type: constants.CLEAR_BASE_ROUTES,
-        routes: null
-    };
-}
-
-export interface ChangePageAction {
-    type: string;
-    page: constants.CurrentPage;
-}
-export function changePage(page: constants.CurrentPage): ChangePageAction {
-    return {
-        type: constants.CHANGE_PAGE,
-        page
     };
 }
 
@@ -241,38 +190,7 @@ export function collapseRoute(): ExpandRouteAction {
     };
 }
 
-export interface ShowTopbarDropdownMenuAction {
-    type: string;
-}
-export function showTopbarDropdownMenu(): ShowTopbarDropdownMenuAction {
-    return {
-        type: constants.SHOW_TOPBAR_DROPDOWN_MENU
-    };
-}
-export interface HideTopbarDropdownMenuAction {
-    type: string;
-}
-export function hideTopbarDropdownMenu(): HideTopbarDropdownMenuAction {
-    return {
-        type: constants.HIDE_TOPBAR_DROPDOWN_MENU
-    };
-}
-
 export interface TemporaryHomeAddressAction {
     type: string;
     address: AutocompletePrediction | null;
 }
-export function setTemporaryHomeAddress(address: AutocompletePrediction): TemporaryHomeAddressAction {
-    return {
-        type: constants.SET_TEMPORARY_HOME_ADDRESS,
-        address
-    };
-}
-export function removeTemporaryHomeAddress(): TemporaryHomeAddressAction {
-    return {
-        type: constants.SET_TEMPORARY_HOME_ADDRESS,
-        address: null
-    };
-}
-
-export type TopbarDropdownMenuAction = ShowTopbarDropdownMenuAction | HideTopbarDropdownMenuAction;

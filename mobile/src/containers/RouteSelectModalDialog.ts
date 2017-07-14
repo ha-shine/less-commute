@@ -2,13 +2,11 @@ import {StoreState} from '../types/index';
 import {connect, Dispatch} from 'react-redux';
 import RouteSelectModalDialog from '../components/RouteSelectModalDialog';
 import {
-    addAdditionalRoutes, changeAdditionalRoutes,
-    changePage, clearAdditionalAddress, clearRouteFromDestination, clearRouteFromSource,
-    clearSelectedRoutes,
-    confirmBaseRoute, fetchRouteFromDestination, fetchRouteFromSource,
-    hideModal, selectHomeAddress, SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
+    addAdditionalRoutes, changeAdditionalRoutes, clearAdditionalAddress, clearRouteFromDestination,
+    clearRouteFromSource, clearSelectedRoutes, fetchRouteFromDestination, fetchRouteFromSource, hideModal,
+    SelectRouteAction, selectRouteFromDestination, selectRouteFromSource
 } from '../actions/index';
-import {CurrentModal, CurrentPage} from '../constants/index';
+import {CurrentModal} from '../constants/index';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
@@ -16,20 +14,11 @@ import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute
  * Created by shine on 1/7/2017.
  */
 function mapStateToProps(s: StoreState) {
-    let source = s.selectedHomeAddress;
-    switch (s.currentModal) {
-        case CurrentModal.NewRouteSecondModal:
-            source = s.additionalAddress;
-            break;
-        case CurrentModal.ChangeRouteModal:
-            source = (s.additionalRoutes.find(x => x.id === s.expandedRouteId) as DirectionsRoutePair).address;
-            break;
-        case CurrentModal.ChangeHomeAddressModal:
-            source = s.temporaryHomeAddress;
-            break;
-        default:
-            source = s.selectedHomeAddress;
+    let source = s.additionalAddress;
+    if (s.currentModal === CurrentModal.ChangeRouteModal) {
+        source = (s.additionalRoutes.find(x => x.id === s.expandedRouteId) as DirectionsRoutePair).address;
     }
+
     return {
         currentModal: s.currentModal,
         source: source as AutocompletePrediction,
@@ -53,10 +42,6 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
             d(clearSelectedRoutes());
             d(clearAdditionalAddress());
         },
-        onConfirmBaseRoutes: (routes: DirectionsRoutePair) => {
-            d(confirmBaseRoute(routes));
-            d(changePage(CurrentPage.RouteCompareMenu));
-        },
         onConfirmAdditionalRoutes: (routes: DirectionsRoutePair) => {
             d(addAdditionalRoutes(routes));
         },
@@ -69,9 +54,6 @@ function mapDispatchToProps(d: Dispatch<SelectRouteAction>) {
         onReceiveRouteFromDestination: (routes: IdentifiableDirectionsRoute[]) => {
             d(fetchRouteFromDestination(routes));
         },
-        onSelectHomeAddress: (address: AutocompletePrediction) => {
-            d(selectHomeAddress(address));
-        }
     };
 }
 

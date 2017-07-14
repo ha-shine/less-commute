@@ -4,7 +4,6 @@ import './RouteCompareMenu.css';
 import DirectionsStepsRenderer from './DirectionsStepsRenderer';
 
 interface Props {
-    baseRoutes: DirectionsRoutePair | null;
     days: number;
     onClickAddRouteBtn: () => void;
     additionalRoutes: DirectionsRoutePair[];
@@ -13,10 +12,9 @@ interface Props {
     onCollapseRoute: () => void;
     onDeleteRoute: (pairId: string) => void;
     onChangeRoute: () => void;
-    onChangeBaseRoute: () => void;
 }
 export function RouteCompareMenu(p: Props) {
-    if (p.baseRoutes !== null) {
+    if (p.additionalRoutes.length > 0) {
         const additionalRoutesDisplay = p.additionalRoutes.map((x) => {
             if (x.id === p.expandedRouteId) {
                 return (
@@ -36,24 +34,8 @@ export function RouteCompareMenu(p: Props) {
                 );
             }
         });
-
-        let baseRoute = <RouteCompareRow routePair={p.baseRoutes} days={p.days} onAction={p.onExpandRoute}/>;
-        if (p.expandedRouteId === p.baseRoutes.id) {
-            baseRoute = (
-                <ExpandedRouteCompareRow
-                    routePair={p.baseRoutes}
-                    days={p.days}
-                    onAction={p.onCollapseRoute}
-                    deletable={false}
-                    onClickDelete={(pairId: string) => p.onDeleteRoute(pairId)}
-                    onClickChangeRoute={p.onChangeBaseRoute}
-                />
-            );
-        }
-
         return (
             <div className="route-compare-menu">
-                {baseRoute}
                 {additionalRoutesDisplay}
                 <div className="add-route-button" onClick={p.onClickAddRouteBtn}>
                     +
