@@ -61,14 +61,15 @@ export default class NewRouteModalDialog extends React.Component<Props, State> {
                             </div>
                             <div className="row">
                                 <a className="pull-left" onClick={this.onCloseModal}>Cancel</a>
-                                <a
-                                    className="pull-right"
-                                    disabled={this.state.selectedAddress === null}
-                                    onClick={this.onClickNext}
-                                >
-                                    Next
-                                    <span className="ion-ios-arrow-thin-right"/>
-                                </a>
+                                {this.state.selectedAddress !== null &&
+                                    <a
+                                        className="pull-right"
+                                        onClick={this.onClickNext}
+                                    >
+                                        Next
+                                        <span className="ion-ios-arrow-thin-right"/>
+                                    </a>
+                                }
                             </div>
                         </div>
                     </div>
