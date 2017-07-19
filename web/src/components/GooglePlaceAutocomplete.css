@@ -1,0 +1,32 @@
+.autocomplete-span-box {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.selectable-dropdown-list {
+    position: absolute;
+    margin-top: 0px;
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.selectable-dropdown-list .item {
+    padding: 10px 12px;
+    background-color: white;
+    cursor: pointer;
+    margin-bottom: -1px;
+    margin-top: -1px;
+    border: 1px solid #dddddd;
+}
+
+.selectable-dropdown-list .item:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.selectable-dropdown-list .item:hover {
+    background-color: #e5e5e5;
+}

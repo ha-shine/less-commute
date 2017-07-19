@@ -1,0 +1,40 @@
+/* loading div animation */
+.modal-dialog .loading-div {
+    padding: 100px 0;
+}
+
+.modal-dialog .loading-div span:nth-of-type(1):after {
+    content: '.';
+    animation: dots 1s linear both infinite;
+}
+
+.modal-dialog .loading-div span:nth-of-type(2):after {
+    content: '.';
+    animation: dots2 1s linear both infinite;
+}
+
+.modal-dialog .loading-div span:nth-of-type(3):after {
+    content: '.';
+    animation: dots3 1s linear both infinite;
+}
+
+@keyframes dots {
+    0%, 39% {
+        color: white;}
+    40%, 100% {
+        color: black;}
+}
+
+@keyframes dots2 {
+    0%, 69% {
+        color: white;}
+    70%, 100% {
+        color: black;}
+}
+
+@keyframes dots3 {
+    0%, 89% {
+        color: white;}
+    90%, 100% {
+        color: black;}
+}
