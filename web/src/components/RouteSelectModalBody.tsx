@@ -7,6 +7,7 @@ interface Props {
     routes: IdentifiableDirectionsRoute[];
     onSelectRoute: (id: string) => void;
     selectedRouteId: string;
+    onHoverRoute: (routeId: string) => void;
 }
 export default class RouteSelectModalBody extends React.Component<Props, {}> {
     render() {
@@ -20,9 +21,12 @@ export default class RouteSelectModalBody extends React.Component<Props, {}> {
                             className={className}
                             key={uuidv4()}
                             onClick={() => this.props.onSelectRoute(route.id)}
+                            onMouseEnter={() => this.props.onHoverRoute(route.id)}
                         >
                             <div className="col-xs-8">
-                                <DirectionsStepsRenderer steps={route.route.legs[0].steps}/>
+                                <DirectionsStepsRenderer
+                                    steps={route.route.legs[0].steps}
+                                />
                             </div>
                             <div className="col-xs-2 text-left values">
                                 <div className="duration-value">{route.duration}</div>

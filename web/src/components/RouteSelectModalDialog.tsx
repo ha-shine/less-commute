@@ -31,7 +31,21 @@ interface Props {
     onConfirmChangeRoutes: (existingPairId: string, routes: DirectionsRoutePair) => void;
     onSelectHomeAddress: (address: AutocompletePrediction) => void;
 }
-export default class RouteSelectModalDialog extends React.Component<Props, {}> {
+interface State {
+    lastHoveredRouteId: string;
+}
+export default class RouteSelectModalDialog extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            lastHoveredRouteId: ''
+        };
+    }
+    setHoveredRoute = (id: string) => {
+        this.setState({
+            lastHoveredRouteId: id
+        });
+    }
     componentDidMount() {
         let departureTimeFromSource = new Date();
         let departureTimeFromDestination = new Date();
@@ -83,6 +97,18 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
             }
             p.onCloseModal();
         };
+
+        let lastHoveredRoute = null;
+        const id = this.state.lastHoveredRouteId;
+        if (id !== '') {
+            const sourceIdRoute = this.props.routesFromSource.find((x) => x.id === id);
+            const dstnIdRoute = this.props.routesFromDestination.find((x) => x.id === id);
+            if (sourceIdRoute) {
+                lastHoveredRoute = sourceIdRoute.route;
+            } else if (dstnIdRoute) {
+                lastHoveredRoute = dstnIdRoute.route;
+            }
+        }
         return (
             <ModalOverlayContainer>
                 <LargerModalDialog>
@@ -99,6 +125,7 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
                                     routes={p.routesFromSource}
                                     onSelectRoute={p.onSelectRouteFromSource}
                                     selectedRouteId={p.selectedRouteIdFromSource}
+                                    onHoverRoute={this.setHoveredRoute}
                                 />
                                 <div className="modal-header">
                                     {p.destination.description}
@@ -109,6 +136,7 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
                                     routes={p.routesFromDestination}
                                     onSelectRoute={p.onSelectRouteFromDestination}
                                     selectedRouteId={p.selectedRouteIdFromDestination}
+                                    onHoverRoute={this.setHoveredRoute}
                                 />
                                 <div className="modal-footer">
                                     <button
@@ -121,7 +149,10 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
                                 </div>
                             </div>
                             <div className="col-xs-6 map-col">
-                                <GoogleMap/>
+                                <GoogleMap
+                                    centerId={this.props.destination.place_id}
+                                    shownRoute={lastHoveredRoute}
+                                />
                             </div>
                         </div>
                     </div>
