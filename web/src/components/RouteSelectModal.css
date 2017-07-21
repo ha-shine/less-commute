@@ -44,6 +44,11 @@
     opacity: 0.66;
     margin-top: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.route-select-modal-content .modal-body .selectable-row:hover {
+    opacity: 0.85;
 }
 
 .route-select-modal-content .modal-body .selectable-row.selected {
