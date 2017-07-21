@@ -30,12 +30,14 @@
 
 .route-select-modal-content .modal-body .duration-value,
 .route-select-modal-content .modal-body .fare-value {
-    font-size: 14px;
+    font-size: 16px;
+    display: inline;
 }
 
 .route-select-modal-content .modal-body .duration-id,
 .route-select-modal-content .modal-body .fare-id {
-    margin-top: -10px;
+    padding: 0 4px;
+    display: inline;
 }
 
 .route-select-modal-content .modal-body .selectable-row {
@@ -60,4 +62,16 @@
 
 .route-select-modal-content .modal-footer .ion-ios-checkmark-empty:before {
     transform: scale(2.5);
+}
+
+.route-select-modal-content .col-xs-6 {
+    padding: 0 0 0 22px;
+}
+
+.route-select-modal-content .map-col {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0;
 }

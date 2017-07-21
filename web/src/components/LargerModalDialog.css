@@ -1,0 +1,11 @@
+@media (min-width: 992px) {
+    .modal-lg.larger {
+        margin: 0;
+    }
+    .modal-lg.larger .modal-content {
+        position: fixed;
+        top: 50px;
+        left: 50px;
+        right: 50px;
+    }
+}

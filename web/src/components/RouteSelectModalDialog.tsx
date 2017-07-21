@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LargeModalDialog from './LargeModalDialog';
+import LargerModalDialog from './LargerModalDialog';
 import LoadingAnimationModalContent from './LoadingAnimationModalContent';
 import './RouteSelectModal.css';
 import ModalOverlayContainer from './ModalOverlayContainer';
@@ -11,6 +11,7 @@ import * as constants from '../constants/index';
 import DirectionsResult = google.maps.DirectionsResult;
 import {getGoogleDirection} from '../services/index';
 import {CurrentModal} from '../constants/index';
+import GoogleMap from './GoogleMap';
 
 interface Props {
     existingPairId: string;
@@ -58,9 +59,9 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
         if (p.routesFromSource.length <= 0 || p.routesFromDestination.length <= 0) {
             return (
                 <ModalOverlayContainer>
-                    <LargeModalDialog>
+                    <LargerModalDialog>
                         <LoadingAnimationModalContent/>
-                    </LargeModalDialog>
+                    </LargerModalDialog>
                 </ModalOverlayContainer>
             );
         }
@@ -84,40 +85,47 @@ export default class RouteSelectModalDialog extends React.Component<Props, {}> {
         };
         return (
             <ModalOverlayContainer>
-                <LargeModalDialog>
+                <LargerModalDialog>
                     <div className="modal-content route-select-modal-content">
-                        <span className="ion-android-close close-button" onClick={p.onCloseModal}/>
-                        <div className="modal-header">
-                            {p.source.description}
-                            <span className="ion-ios-arrow-thin-right"/>
-                            {p.destination.description}
-                        </div>
-                        <RouteSelectModalBody
-                            routes={p.routesFromSource}
-                            onSelectRoute={p.onSelectRouteFromSource}
-                            selectedRouteId={p.selectedRouteIdFromSource}
-                        />
-                        <div className="modal-header">
-                            {p.destination.description}
-                            <span className="ion-ios-arrow-thin-right"/>
-                            {p.source.description}
-                        </div>
-                        <RouteSelectModalBody
-                            routes={p.routesFromDestination}
-                            onSelectRoute={p.onSelectRouteFromDestination}
-                            selectedRouteId={p.selectedRouteIdFromDestination}
-                        />
-                        <div className="modal-footer">
-                            <button
-                                className="btn btn-default pull-right"
-                                onClick={() => onClickConfirm()}
-                                disabled={p.selectedRouteIdFromSource === '' || p.selectedRouteIdFromDestination === ''}
-                            >
-                                confirm <span className="ion-ios-checkmark-empty"/>
-                            </button>
+                        <div className="row">
+                            <div className="col-xs-6">
+                                <span className="ion-android-close close-button" onClick={p.onCloseModal}/>
+                                <div className="modal-header">
+                                    {p.source.description}
+                                    <span className="ion-ios-arrow-thin-right"/>
+                                    {p.destination.description}
+                                </div>
+                                <RouteSelectModalBody
+                                    routes={p.routesFromSource}
+                                    onSelectRoute={p.onSelectRouteFromSource}
+                                    selectedRouteId={p.selectedRouteIdFromSource}
+                                />
+                                <div className="modal-header">
+                                    {p.destination.description}
+                                    <span className="ion-ios-arrow-thin-right"/>
+                                    {p.source.description}
+                                </div>
+                                <RouteSelectModalBody
+                                    routes={p.routesFromDestination}
+                                    onSelectRoute={p.onSelectRouteFromDestination}
+                                    selectedRouteId={p.selectedRouteIdFromDestination}
+                                />
+                                <div className="modal-footer">
+                                    <button
+                                        className="btn btn-default pull-right"
+                                        onClick={() => onClickConfirm()}
+                                        disabled={p.selectedRouteIdFromSource === '' || p.selectedRouteIdFromDestination === ''}
+                                    >
+                                        confirm <span className="ion-ios-checkmark-empty"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="col-xs-6 map-col">
+                                <GoogleMap/>
+                            </div>
                         </div>
                     </div>
-                </LargeModalDialog>
+                </LargerModalDialog>
             </ModalOverlayContainer>
         );
     }
