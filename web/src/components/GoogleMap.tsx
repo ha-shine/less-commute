@@ -2,6 +2,8 @@ import * as React from 'react';
 import './GoogleMap.css';
 import GeocoderStatus = google.maps.GeocoderStatus;
 import DirectionsRoute = google.maps.DirectionsRoute;
+import DirectionsStep = google.maps.DirectionsStep;
+import TravelMode = google.maps.TravelMode;
 
 interface Props {
     centerId: string;
@@ -30,7 +32,7 @@ export default class GoogleMap extends React.Component<Props, State> {
     }
     loadMap() {
         this.gmap = new google.maps.Map(this.map, {
-            zoom: 11,
+            zoom: 12,
             center: {lat: 1.290270, lng: 103.851959},
             streetViewControl: false
         });
@@ -59,12 +61,9 @@ export default class GoogleMap extends React.Component<Props, State> {
         if (directionsResult !== null) {
             let polylines: google.maps.Polyline[] = [];
             directionsResult.legs[0].steps.forEach((step) => {
-                const polyline = new google.maps.Polyline({
-                    path: step.path,
-                    strokeOpacity: 1,
-                    strokeColor: '#555',
-                    strokeWeight: 6
-                });
+                const options = this.getPolylineOptionsFromDirectionsStep(step);
+                const polyline = new google.maps.Polyline();
+                polyline.setOptions(options);
                 polyline.setMap(this.gmap);
                 polylines.push(polyline);
             });
@@ -72,6 +71,32 @@ export default class GoogleMap extends React.Component<Props, State> {
                 sourceLines: polylines
             });
         }
+    }
+    getPolylineOptionsFromDirectionsStep(step: DirectionsStep) {
+        let options: google.maps.PolylineOptions = {};
+        options.path = step.path;
+        options.strokeColor = '#666666';
+        options.strokeOpacity = 1;
+        options.strokeWeight = 6;
+
+        if (step.travel_mode === TravelMode.WALKING) {
+            const lineSymbol = {
+                path: 'M 0.2, -0.2 0.2, 0.2',
+                strokeOpacity: 1,
+                scale: 4
+            };
+            options.icons = [{
+                icon: lineSymbol,
+                offset: '0',
+                repeat: '9px'
+            }];
+            options.strokeOpacity = 0;
+        } else if (step.travel_mode === TravelMode.TRANSIT) {
+            if (step.transit.line.vehicle.type.toString() !== 'BUS') {
+                options.strokeColor = step.transit.line.color;
+            }
+        }
+        return options;
     }
     render() {
         return (
