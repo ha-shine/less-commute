@@ -73,14 +73,15 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAct
     const totalDuration = (p.routePair.routeFromSource.duration + p.routePair.routeFromDestination.duration) * p.days;
     return (
         <div className="row comparer-row" onClick={() => p.onAction(p.routePair.id)}>
-            <div className="col-xs-8">{p.routePair.address.description}</div>
+            <div className="col-xs-6">{p.routePair.address.description}</div>
+            <div className="col-xs-2 text-left">monthly</div>
             <div className="col-xs-2 duration">
-                <div className="value">{totalDuration}</div>
-                <div className="identifier">min</div>
+                <span className="value">{totalDuration} </span>
+                <span className="identifier">min</span>
             </div>
             <div className="col-xs-2 cost">
-                <div className="value">{totalCost.toFixed(2)}</div>
-                <div className="identifier">SGD</div>
+                <span className="value">{totalCost.toFixed(2)} </span>
+                <span className="identifier">SGD</span>
             </div>
         </div>
     );
@@ -99,12 +100,12 @@ function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, deletable: 
                     <DirectionsStepsRenderer steps={p.routePair.routeFromSource.route.legs[0].steps} />
                 </div>
                 <div className="col-xs-2 duration">
-                    <div className="value">{p.routePair.routeFromSource.duration * p.days}</div>
-                    <div className="identifier">min</div>
+                    <span className="value">{p.routePair.routeFromSource.duration * p.days} </span>
+                    <span className="identifier">min</span>
                 </div>
                 <div className="col-xs-2 cost">
-                    <div className="value">{(p.routePair.routeFromSource.totalFare * p.days).toFixed(2)}</div>
-                    <div className="identifier">SGD</div>
+                    <span className="value">{(p.routePair.routeFromSource.totalFare * p.days).toFixed(2)} </span>
+                    <span className="identifier">SGD</span>
                 </div>
             </div>
             <div className="row">
@@ -112,24 +113,24 @@ function ExpandedRouteCompareRow(p: {routePair: DirectionsRoutePair, deletable: 
                     <DirectionsStepsRenderer steps={p.routePair.routeFromDestination.route.legs[0].steps} />
                 </div>
                 <div className="col-xs-2 duration">
-                    <div className="value">{p.routePair.routeFromDestination.duration * p.days}</div>
-                    <div className="identifier">min</div>
+                    <span className="value">{p.routePair.routeFromDestination.duration * p.days} </span>
+                    <span className="identifier">min</span>
                 </div>
                 <div className="col-xs-2 cost">
-                    <div className="value">{(p.routePair.routeFromDestination.totalFare * p.days).toFixed(2)}</div>
-                    <div className="identifier">SGD</div>
+                    <span className="value">{(p.routePair.routeFromDestination.totalFare * p.days).toFixed(2)} </span>
+                    <span className="identifier">SGD</span>
                 </div>
             </div>
             <div className="row button-row">
-                <div className="col-xs-4">
+                <div className="col-xs-2">
                     <a className="change-route-button" onClick={() => p.onClickChangeRoute()}>Change Route</a>
                 </div>
                 {p.deletable &&
-                    <div className="col-xs-4">
+                    <div className="col-xs-2">
                         <a className="delete-button" onClick={() => p.onClickDelete(p.routePair.id)}>Delete</a>
                     </div>
                 }
-                <div className="col-xs-4" />
+                <div className="col-xs-8" />
             </div>
         </div>
     );

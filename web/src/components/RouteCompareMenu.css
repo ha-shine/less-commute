@@ -16,24 +16,24 @@
 
 .route-compare-menu .comparer-row,
 .route-compare-menu .expanded-comparer-row {
-    border-bottom: 1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
     font-family: Monteserrat, sans-serif;
+    margin: 0 0 -1px 0;
+    padding: 10px;
 }
 
 .route-compare-menu .comparer-row {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    cursor: pointer;
 }
 
-.route-compare-menu .expanded-comparer-row {
-    margin-left: -15px;
-    margin-right: -15px;
-    padding-bottom: 5px;
+.route-compare-menu .comparer-row:hover {
+    background-color: #f0f0f0;
 }
 
 .route-compare-menu .expanded-comparer-row .col-xs-12 {
     padding-top: 6px;
     padding-bottom: 6px;
+    cursor: pointer;
 }
 
 .route-compare-menu .expanded-comparer-row .row {
@@ -41,10 +41,13 @@
     margin-right: 0;
 }
 
-.route-compare-menu .expanded-comparer-row .row:nth-child(4) {
-    padding-top: 10px;
+.route-compare-menu .expanded-comparer-row .button-row {
+    padding-top: 20px;
 }
 
+.route-compare-menu .expanded-comparer-row .button-row a {
+    cursor: pointer;
+}
 .route-compare-menu .expanded-comparer-row .delete-button {
     color: #e51c23;
 }
@@ -81,6 +84,12 @@
     border: 1px solid #e5e5e5;
 }
 
+.route-compare-menu .empty-row {
+    margin:  0;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+}
+
 .route-compare-menu .empty-row h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -90,5 +99,4 @@
 .route-compare-menu .input-row {
     margin-top: 7px;
     padding-bottom: 4px;
-    border-bottom: 1px solid #e5e5e5;
 }
