@@ -13,6 +13,8 @@ export default class TopBar extends React.Component<Props, {}> {
                 <div className="container">
                     <div className="navbar-header">
                         <a className="navbar-brand">OptimizeCommute</a>
+                    </div>
+                    <div className="navbar-right">
                         <span className="ion-ios-information-outline details pull-right"/>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import * as constants from '../constants';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
-import {CurrentModal} from '../constants/index';
+import {AddressSortType, CurrentModal} from '../constants/index';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 /**
  * Created by Shine on 6/29/2017.
@@ -190,7 +190,13 @@ export function collapseRoute(): ExpandRouteAction {
     };
 }
 
-export interface TemporaryHomeAddressAction {
+export interface ChangeAddressSortTypeAction {
     type: string;
-    address: AutocompletePrediction | null;
+    sortType: AddressSortType;
+}
+export function changeAddressSortType(sortType: AddressSortType): ChangeAddressSortTypeAction {
+    return {
+        type: constants.CHANGE_ADDRESS_SORT_TYPE,
+        sortType
+    };
 }

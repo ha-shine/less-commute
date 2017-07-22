@@ -7,7 +7,7 @@ import {createStore} from 'redux';
 import {StoreState} from './types/index';
 import {Provider} from 'react-redux';
 import {rootReducer} from './reducers/index';
-import {CurrentModal} from './constants/index';
+import {AddressSortType, CurrentModal} from './constants/index';
 
 const initialStore: StoreState = {
     selectedWorkAddress: null,
@@ -19,7 +19,8 @@ const initialStore: StoreState = {
     days: 20,
     additionalAddress: null,
     additionalRoutes: [],
-    expandedRouteId: ''
+    expandedRouteId: '',
+    currentAddressSortType: AddressSortType.NONE
 };
 
 const store = createStore<StoreState>(rootReducer, initialStore);

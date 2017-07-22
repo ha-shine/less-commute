@@ -3,6 +3,7 @@ import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import './RouteCompareMenu.css';
 import DirectionsStepsRenderer from './DirectionsStepsRenderer';
 import {SyntheticEvent} from 'react';
+import {AddressSortType} from "../constants/index";
 
 interface Props {
     days: number;
@@ -14,6 +15,7 @@ interface Props {
     onDeleteRoute: (pairId: string) => void;
     onChangeRoute: () => void;
     setDays: (days: number) => void;
+    setAddressSortType: (sortType: AddressSortType) => void;
 }
 export function RouteCompareMenu(p: Props) {
     let additionalRoutesDisplay = null;
@@ -23,6 +25,23 @@ export function RouteCompareMenu(p: Props) {
             p.setDays(days);
         }
     };
+
+    const onSortbyTypeChange = (event: SyntheticEvent<HTMLSelectElement>) => {
+        switch(event.currentTarget.value) {
+            case "none":
+                p.setAddressSortType(AddressSortType.NONE);
+                break;
+            case "fare":
+                p.setAddressSortType(AddressSortType.FARE);
+                break;
+            case "duration":
+                p.setAddressSortType(AddressSortType.DURATION);
+                break;
+            default:
+                break;
+        }
+    };
+
     if (p.additionalRoutes.length > 0) {
         additionalRoutesDisplay = p.additionalRoutes.map((x) => {
             if (x.id === p.expandedRouteId) {
@@ -52,10 +71,19 @@ export function RouteCompareMenu(p: Props) {
             </div>
         );
     }
+
     return (
     <div className="route-compare-menu">
         <div className="row input-row">
-            <div className="col-xs-12 text-right">
+            <div className="col-xs-6">
+                <label>Sort by</label>
+                <select className="form-control sortby-select" onChange={onSortbyTypeChange}>
+                    <option value="none">None</option>
+                    <option value="fare">Fare</option>
+                    <option value="duration">Duration</option>
+                </select>
+            </div>
+            <div className="col-xs-6 text-right">
                 <label>Days travel per month</label>
                 <input type="text" className="form-control days-input" value={p.days} onChange={daysInputChange}/>
             </div>
