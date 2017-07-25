@@ -79,6 +79,13 @@
     text-align: center;
     height: auto;
     border: 1px solid #e5e5e5;
+    box-shadow: none;
+}
+
+.route-compare-menu .sortby-select {
+    display: inline;
+    max-width: 100px;
+    box-shadow: none;
 }
 
 .route-compare-menu .empty-row h6 {

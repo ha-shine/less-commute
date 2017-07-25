@@ -1,13 +1,14 @@
 import * as constants from '../constants/index';
 import {
-    AddAdditionalRoutesAction, ChangeAdditionalRoutesAction, ChooseAdditionalAddressAction, ExpandRouteAction,
+    AddAdditionalRoutesAction, ChangeAdditionalRoutesAction, ChangeAddressSortTypeAction, ChooseAdditionalAddressAction,
+    ExpandRouteAction,
     FetchGoogleRouteAction, RemoveAdditionalRoutesAction, SelectedAddressAction, SelectRouteAction, SetDaysAction,
     ShowModalAction
 } from '../actions/index';
 import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 import {combineReducers} from 'redux';
 import {StoreState} from '../types/index';
-import {CurrentModal} from '../constants/index';
+import {AddressSortType, CurrentModal} from '../constants/index';
 import IdentifiableDirectionsRoute from '../entities/IdentifiableDirectionsRoute';
 import DirectionsRoutePair from '../entities/DirectionsRoutePair';
 import { ClearAdditionalRoutesAction } from '../actions/index';
@@ -133,6 +134,16 @@ export function expandedRouteId(state: string = '', action: ExpandRouteAction): 
     }
 }
 
+export function currentAddressSortType(state: AddressSortType = AddressSortType.NONE,
+                                       action: ChangeAddressSortTypeAction): AddressSortType {
+    switch (action.type) {
+        case constants.CHANGE_ADDRESS_SORT_TYPE:
+            return action.sortType;
+        default:
+            return state;
+    }
+}
+
 export const rootReducer = combineReducers<StoreState>({
     selectedWorkAddress,
     routesFromSource,
@@ -143,5 +154,6 @@ export const rootReducer = combineReducers<StoreState>({
     days,
     additionalAddress,
     additionalRoutes,
-    expandedRouteId
+    expandedRouteId,
+    currentAddressSortType
 });

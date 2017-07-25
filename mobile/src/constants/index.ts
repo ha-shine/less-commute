@@ -17,6 +17,7 @@ export const CHANGE_ADDITIONAL_ROUTES = 'CHANGE_ADDITIONAL_ROUTES';
 export const REMOVE_ADDITIONAL_ROUTES = 'REMOVE_ADDITIONAL_ROUTES';
 export const CLEAR_ADDITIONAL_ROUTES = 'CLEAR_ADDITIONAL_ROUTES';
 export const EXPAND_ROUTE = 'EXPAND_ROUTE';
+export const CHANGE_ADDRESS_SORT_TYPE = 'CHANGE_ADDRESS_SORT_TYPE';
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
@@ -27,4 +28,9 @@ export enum CurrentModal {
     RouteDeleteConfirmModal,
     EntryDialogModal,
     None
+}
+export enum AddressSortType {
+    NONE,
+    FARE,
+    DURATION
 }
