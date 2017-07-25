@@ -101,8 +101,7 @@ function RouteCompareRow(p: {routePair: DirectionsRoutePair, days: number, onAct
     const totalDuration = (p.routePair.routeFromSource.duration + p.routePair.routeFromDestination.duration) * p.days;
     return (
         <div className="row comparer-row" onClick={() => p.onAction(p.routePair.id)}>
-            <div className="col-xs-6">{p.routePair.address.description}</div>
-            <div className="col-xs-2 text-left">monthly</div>
+            <div className="col-xs-8">{p.routePair.address.description}</div>
             <div className="col-xs-2 duration">
                 <span className="value">{totalDuration} </span>
                 <span className="identifier">min</span>

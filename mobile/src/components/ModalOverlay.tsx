@@ -6,6 +6,7 @@ import NewRouteModalDialog from '../containers/NewRouteModalDialog';
 import RouteDeleteConfirmModal from '../containers/RouteDeleteConfirmModal';
 import EntryDialogModal from '../containers/EntryDialogModal';
 import RouteSelectModalDialog from '../containers/RouteSelectModalDialog';
+import InformationModal from "../containers/InformationModal";
 
 interface Props {
     currentModal: constants.CurrentModal;
@@ -21,6 +22,8 @@ export default function ModalOverlay(props: Props) {
             return <RouteDeleteConfirmModal />;
         case CurrentModal.EntryDialogModal:
             return <EntryDialogModal />;
+        case CurrentModal.InformationModal:
+            return <InformationModal />;
         default:
             return null;
     }

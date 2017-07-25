@@ -5,6 +5,7 @@ import * as React from 'react';
 import './TopBar.css';
 
 interface Props {
+    showInformationModal: () => void;
 }
 export default class TopBar extends React.Component<Props, {}> {
     render() {
@@ -15,7 +16,10 @@ export default class TopBar extends React.Component<Props, {}> {
                         <a className="navbar-brand">LessCommute <small>Alpha</small></a>
                     </div>
                     <div className="navbar-right">
-                        <span className="ion-ios-information-outline details pull-right"/>
+                        <span
+                            className="ion-ios-information-outline details pull-right"
+                            onClick={this.props.showInformationModal}
+                        />
                     </div>
                 </div>
             </nav>

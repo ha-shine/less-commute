@@ -16,7 +16,7 @@ export default function SimpleDialogModal({header, body, footer, closeable, onCl
             <SmallModalDialog>
                 <div className="modal-content dialog-modal">
                     {closeable &&
-                    <span className="ion-android-close close-button" onClick={onClose}/>
+                    <span className="ion-android-close close-button pull-right" onClick={onClose}/>
                     }
                     {header}
                     {body}

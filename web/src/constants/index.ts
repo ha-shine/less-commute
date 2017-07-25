@@ -18,6 +18,10 @@ export const REMOVE_ADDITIONAL_ROUTES = 'REMOVE_ADDITIONAL_ROUTES';
 export const CLEAR_ADDITIONAL_ROUTES = 'CLEAR_ADDITIONAL_ROUTES';
 export const EXPAND_ROUTE = 'EXPAND_ROUTE';
 export const CHANGE_ADDRESS_SORT_TYPE = 'CHANGE_ADDRESS_SORT_TYPE';
+export const EMAIL = 'h@shine.rocks';
+export const GITHUB_LINK = 'https://www.github.com/ha-shine/less-commute';
+export const TWITTER_HANDLE = '@_sha94';
+export const TWITTER_LINK = 'https://twitter.com/_sha94';
 
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
@@ -27,6 +31,7 @@ export enum CurrentModal {
     ChangeRouteModal,
     RouteDeleteConfirmModal,
     EntryDialogModal,
+    InformationModal,
     None
 }
 export enum AddressSortType {
