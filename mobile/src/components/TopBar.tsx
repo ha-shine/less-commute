@@ -12,7 +12,7 @@ export default class TopBar extends React.Component<Props, {}> {
             <nav className="navbar navbar-default topbar">
                 <div className="container">
                     <div className="navbar-header">
-                        <a className="navbar-brand">OptimizeCommute</a>
+                        <a className="navbar-brand">LessCommute <small>Alpha</small></a>
                         <span className="ion-ios-information-outline details pull-right"/>
                     </div>
                 </div>

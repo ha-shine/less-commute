@@ -5,3 +5,8 @@
     padding: 5.5px 15px;
     cursor: pointer;
 }
+
+.navbar-brand small {
+    color: #a2a2a2;
+    font-size: 80%;
+}
