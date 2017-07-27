@@ -47,8 +47,8 @@ export default class EntryDialogModal extends React.Component<Props, State> {
             <div className="modal-body">
                 <p>I will need to know your destination/work address before we begin.</p>
                 <div>
-                    <div className="form-group">
-                        <label>Work Address</label>
+                    <div className="form-group" style={{marginTop: '15px'}}>
+                        <label style={{color: '#333'}}>Work Address</label>
                         <GooglePlaceAutocomplete
                             onSelectAddress={(x: AutocompletePrediction) => this.setAddress(x)}
                             onRemoveAddress={() => this.removeAddress()}
