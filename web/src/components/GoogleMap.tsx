@@ -4,9 +4,11 @@ import GeocoderStatus = google.maps.GeocoderStatus;
 import DirectionsRoute = google.maps.DirectionsRoute;
 import DirectionsStep = google.maps.DirectionsStep;
 import TravelMode = google.maps.TravelMode;
+import AutocompletePrediction = google.maps.places.AutocompletePrediction;
 
 interface Props {
-    centerId: string;
+    source: AutocompletePrediction;
+    destination: AutocompletePrediction;
     shownRoute: DirectionsRoute | null;
 }
 interface State {
@@ -23,7 +25,7 @@ export default class GoogleMap extends React.Component<Props, State> {
     }
     componentDidMount() {
         this.loadMap();
-        this.centerMap();
+        this.initializeMap();
         this.addLines(this.props.shownRoute);
     }
     componentWillReceiveProps(nextProps: Props) {
@@ -37,13 +39,31 @@ export default class GoogleMap extends React.Component<Props, State> {
             streetViewControl: false
         });
     }
-    centerMap() {
+    initializeMap() {
         const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'placeId': this.props.centerId}, (results, status) => {
+        geocoder.geocode({ 'placeId': this.props.destination.place_id}, (results, status) => {
             if (status === GeocoderStatus.OK) {
                 if (results[0]) {
                     this.gmap.setZoom(12);
                     this.gmap.setCenter(results[0].geometry.location);
+                    const marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        label: 'A',
+                        title: this.props.destination.description
+                    });
+                    marker.setMap(this.gmap);
+                }
+            }
+        });
+        geocoder.geocode({ 'placeId': this.props.source.place_id}, (results, status) => {
+            if (status === GeocoderStatus.OK) {
+                if (results[0]) {
+                    const marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        label: 'B',
+                        title: this.props.source.description
+                    });
+                    marker.setMap(this.gmap);
                 }
             }
         });

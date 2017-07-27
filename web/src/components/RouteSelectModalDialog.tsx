@@ -45,7 +45,7 @@ export default class RouteSelectModalDialog extends React.Component<Props, State
         this.setState({
             lastHoveredRouteId: id
         });
-    }
+    };
     componentDidMount() {
         let departureTimeFromSource = new Date();
         let departureTimeFromDestination = new Date();
@@ -150,7 +150,8 @@ export default class RouteSelectModalDialog extends React.Component<Props, State
                             </div>
                             <div className="col-xs-6 map-col">
                                 <GoogleMap
-                                    centerId={this.props.destination.place_id}
+                                    source={this.props.source}
+                                    destination={this.props.destination}
                                     shownRoute={lastHoveredRoute}
                                 />
                             </div>
