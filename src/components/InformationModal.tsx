@@ -19,7 +19,7 @@ export default class InformationModal extends React.Component<Props, {}> {
                 <p>
                     Less Commute is a hobby project with the aim of reducing commute
                     time for people in Singapore by providing necessary tools. This is
-                    an open source project and anyone can contribute at the github repo below.
+                    an open source project and anyone can contribute <a href={constants.GITHUB_LINK}>here</a>.
                     Contact me for bug fixes and feature requests.
                 </p>
                 <p className="text-center">
